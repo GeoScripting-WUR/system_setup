@@ -144,10 +144,10 @@ Not all packages are hosted on the CRAN package repository, this is the case for
 
 \subsection{Installing the rasta package on Mac}
 
-<<eval=FALSE>>=
-install.packages("rasta", repos="http://R-Forge.R-project.org", 
-                 type = "source")
-@
+% <<eval=FALSE>>=
+% install.packages("rasta", repos="http://R-Forge.R-project.org", 
+%                  type = "source")
+% @
 
 \subsection{Extra help}
 
