@@ -1,11 +1,9 @@
 ---
 title: "Setting up your system for Geo-scripting with R"
-author: "Loïc Dutrieux"
+author: "Loïc Dutrieux and Jan Verbesselt"
 output: html_document
 ---
 
-# Setting up your system for Geo-scripting with R
-*By Loïc Dutrieux and Jan Verbesselt*
 
 # Introduction
 Having your system properly set-up is a cricial step before starting any geo-processing with R. This short tutorial will guide you through some important steps that you should follw in order to have the required software installed and appropriately set-up. The figure below provides an overview of the different components of the system and how they are connected with each others.
