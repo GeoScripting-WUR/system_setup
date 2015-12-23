@@ -1,28 +1,45 @@
 ---
-title: "Setting up your system for Geo-scripting with R"
-author: "Loïc Dutrieux and Jan Verbesselt"
-output: html_document
+title: "[WUR GRS-51806 Geoscripting](https://geoscripting-wur.github.io/)"
+subtitle: "Setting up your system for Geo-scripting with R"
+author: "Loïc Dutrieux, Jan Verbesselt"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    number_sections: yes
+    css: custom.css
+    highlight: tango
+    toc: yes
+    toc_depth: 2
 ---
 
-
 # Introduction
-Having your system properly set-up is a cricial step before starting any geo-processing with R. This short tutorial will guide you through some important steps that you should follw in order to have the required software installed and appropriately set-up. The figure below provides an overview of the different components of the system and how they are connected with each others.
 
+Having your system properly set-up is a cricial step before starting any geo-processing with R and Python. This short tutorial will guide you through some important steps that you should follw in order to have the required software installed and appropriately set-up. The figure below provides an overview of the different components of the system and how they are connected with each others.
 
 <center><img src="figs/system_overview_2.png" alt="Drawing" style="width: 700px"/></center>
 
-
 # On windows
 
-## R and R Studio
+For the geo-scripting course (2016) we recommend you to work via a Linux environment as there all open-source tools and scripting languages (Python!) can more easily be installed. As such, in the PC labs we will work via *VMware Workstation Player*, from which you are able to start up a Linux environment (http://live.osgeo.org/). We will provide this `linux version` (also called virtual machine), which you can open via VMware Workstation Player at the start of the Geo-scripting course.
+
+In case you just want to use R, you can continue and still choose to work on windows (see below). 
+For Python programming we will work within a Linux OSGEO environment.
+
+## VMware Workstation Player
+
+See here http://www.vmware.com/products/workstation/
+
+You can download it, and use it for free! So go ahead & good luck.
+
+## Installing software on windows directly (only recommended for R scripting)
+
+### R and R Studio 
 For information on how to install R and R Studio, please refer to the [R installation manual for windows](http://cran.r-project.org/doc/manuals/r-devel/R-admin.html#Installing-R-under-Windows) and the [R Studio download page](http://www.rstudio.com/ide/download/).
 
-## Rtools
+### Rtools
 RTools is essential if you want to build R package. It is relatively easy to install, simply download the binary associated with your R version from [this page](http://cran.r-project.org/bin/windows/Rtools/), and follow the instructions from the installer. When prompted for ''Edit the system path'', you must say yes.
 
-
-
-## GDAL/OGR/PROJ4 libraries
+### GDAL/OGR/PROJ4 libraries
 Installing these libraries on Windows is not an absolute necessity, however they will come in handy if reprojecting data represent a large part of your work or if you plan on doing a lot of file format conversions. They are an absolute necessity if you have to work with hdf4 format data.
 Many options are available for installing these libraries on Windows systems.
 
@@ -33,7 +50,7 @@ Many options are available for installing these libraries on Windows systems.
 The two latter option should be prefered over FWTools since they contain the most up to date versions of gdal.
 Note that if you want to call some gdal utilities (i.e.: `gdalwarp`, `gdal\_translate`, `gdal\_merge.py`, etc) via `system()` command from R, you will need to append the bin directory containing gdal utilities to your user or system path.
 
-## Version control software
+### Version control software
 Installing these software is not an absolute necessity, however it might come handy if you plan to implement some of the good practices discussed in Lesson 2. Refer to Lesson 2 for more details.
 
 ### Git and SlickSVN
@@ -51,6 +68,9 @@ Not all packages are hosted on the CRAN package repository, this is the case for
 
 
 # Linux
+
+See for more info also http://live.osgeo.org/en/index.html.
+
 ## R and R Studio
 Information on how to install R and RStudio on linux systems can be found [here](http://cran.r-project.org/bin/linux/ubuntu/README) and [here](http://www.rstudio.com/ide/download/desktop).
 ## GDAL/OGR/PROJ4/GEOS libraries
@@ -73,33 +93,33 @@ sudo apt-get install geos
 Your system should be ready to install rgdal and rgeos R packages.
 
 
-
-### Redhat/CentOS
-
-
 # Mac
 
-## R and R Studio
+Similarly as on windows we recommend to work via *VMware Player*. However, *VMware Player* is not free!!! It that is a problem, let us know that we recommend working via an USB3.0 stick and use a bootable OSGEOLIVE linux version (http://live.osgeo.org/)
+
+## Installing software directly on Mac
+
+### R and R Studio
 
 Download and install the latest R version available from: [http://cran.r-project.org/bin/macosx/]. Download and install the latest Rstudio Desktop from the [R Studio download page](http://www.rstudio.com/ide/download/).
 
 
-## GDAL/OGR/PROJ4 libraries
+### GDAL/OGR/PROJ4 libraries
 Installing these libraries on Mac is not required for the Geo-scripting course as the *rgdal* and *rgeos* R package contain the GDAL C++ library. However, they will come in handy if reprojecting data represent a large part of your work or if you plan on doing a lot of file format conversions. They are an absolute necessity if you have to work with hdf4 format data.
 
 The best option for install RGDAL on mac is via the [Kynchaos website](http://www.kyngchaos.com/software/frameworks). At the time of writing this description install the \textbf{GDAL 1.10 Complete} set if you the GDAL library (not required for the course).  Check out a [tutorial](http://spatial.ly/2010/11/installing-rgdal-on-mac-os-x/) if you need more info.
 
-## Version control software
+### Version control software
 Installing these software is not an absolute necessity, however it might come handy if you plan to implement some of the good practices discussed in Lesson 2. Refer to Lesson 2 for more details.
 
 Most likely you need one OR the other, depending on whether your repository is hosted on a git or Subversion version control system. Only git is required if you plan to follow the full tutorial of Lesson 2. See here for an excellent and clear description for how [to install SVN and Git on Mac so that you can use it within RStudio](http://www.rstudio.com/ide/docs/version_control/overview). RStudio IDE should automatically be able to find SVN and Git.
 
 See here for more info if needed: (1) [extra info for OSX](http://superuser.com/questions/455214/where-is-svn-on-os-x-mountain-lion). Git should be available to via Xcode, or (2) [this question](http://apple.stackexchange.com/questions/18470/why-is-git-not-found-after-installing-os-x-lion) helps.
 
-## Specific R packages
+### Specific R packages
 Not all packages are hosted on the CRAN package repository, this is the case for instance of the MODIS package that is maintained on R Forge, and requires an extra argument in the `install.packages()` function to be installed. The install line, to be copy pasted in the R shell is often given on the package R forge home page.
 
-## Extra help
+### Extra help
 
 Other links where you can find help:
 
