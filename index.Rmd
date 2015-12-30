@@ -1,5 +1,5 @@
 ---
-title: "[WUR GRS-51806 Geoscripting](https://geoscripting-wur.github.io/)"
+title: "[WUR Geo-scripting](https://geoscripting-wur.github.io/)"
 subtitle: "Setting up your system for Geo-scripting with R"
 author: "Loïc Dutrieux, Jan Verbesselt"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -29,7 +29,7 @@ For Python programming we will work within a Linux OSGEO environment.
 
 See here http://www.vmware.com/products/workstation/
 
-You can download it, and use it for free! So go ahead & good luck.
+You can download it, and use it for free! We will provide more information during the lessons (lesson 2 and 3).
 
 ## Installing software on windows directly (only recommended for R scripting)
 
