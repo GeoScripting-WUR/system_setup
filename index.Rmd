@@ -15,166 +15,71 @@ output:
 
 # Introduction
 
-Students who take the Geoscripting course at Wageningen University are provided an environment in which all the necessary software is preinstalled. Those who wish to take the course externally, however, need to set the software up by themselves. This page provides some guidance as to how to do so.
+Students who take the Geoscripting course at Wageningen University are provided an environment in which all the necessary software is preinstalled. If you are one of them, you don't need to read the rest of this page. Those who wish to take the course externally, however, need to set the software up by themselves. This page provides some guidance as to how to do so. It is also useful for students who have finished the course and wish to recreate the software setup on their own hardware.
 
-Having your system properly set-up is a cricial step before starting any geo-processing with R and Python. The figure below provides an overview of the different components of the system and how they are connected with each others.
+Having your system properly set-up is a cricial step before starting any geo-processing with R and Python. The figure below provides an overview of some of the different components of the system and how they are connected with each other.
 
 <center><img src="../IntroToRaster/figs/geoscripting-system-overview.svg" alt="System component graph" style="width: 700px"/></center>
 
-The easiest way to get it all running is to work via a Linux environment. There, all (or almost all) the tools are already preinstalled for you. However, getting it to run takes a bit of practice.
+The easiest way to get it all running is to work via a Linux environment. There, all (or almost all) the tools are already preinstalled for you. However, getting it to run takes a bit of practice. There are a few options:
 
-In case you just want to use R, you can continue and still choose to work on Windows (see below). 
-For Python programming we will work within a Linux environment.
+* Running Linux from a virtual machine inside Windows/macOS - easiest but slowest
+* Running Linux off of a USB drive (Live system) - best support and ease-of-setup ratio
+* Installing Linux on a hard drive (external or internal) - best for long-term Linux use
 
-# On Windows
+The [OSGeo Live](http://live.osgeo.org/en/index.html) Linux distribution includes almost everything you need in the course. Alternatively, you can use [Ubuntu 16.04 Xenial Xerus](http://releases.ubuntu.com/16.04/), which is more lightweight. We have prepared an [install script](https://github.com/GeoScripting-WUR/InstallLinuxScript) that installs all the missing tools for the course for both of these options.
 
-## Linux on Windows
+It is possible to get all the software running directly on Windows and macOS, but due to the lack of proper package management, we cannot guarantee support; you are on your own. If you are following just one or two lessons, that is fine, since individual lessons require just a small subset of all required software.
 
-There are several other methods to have Linux running on a Windows machine. You can use virtualisation software, such as [VirtualBox](https://www.virtualbox.org/) or [VMWare Player](http://www.vmware.com/go/tryplayer), to install a Linux distribution into a virtual machine (VM). This method is convienient if you need to run both Windows and Linux programs at the same time, but the computer resources are then shared between the two operating systems.
+# Running Linux
 
-Another method is to write a Linux distribution onto a USB stick, then reboot into it. That allows the Linux distribution to make use of all your computer resources. But changes made in a live environment are limited: only some files are saved, so packages that are installed disappear after a reboot. If you have an external hard drive, Linux can also be installed on it, allowing to save all changes.
+## Linux on a virtual machine
 
-The last method is to install Linux alongside Windows in a dual-boot combination. However, this change is permanent and should be done with caution.
+Follow the [instructions on the OSGeo Live website](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html) to set up VirtualBox and OSGeo Live.
 
-In all cases, the [OSGeo Live](http://live.osgeo.org/en/index.html) distribution is recommended for GIS work. For permanent installations, a more general-purpose distribution (Ubuntu, openSUSE, Mageia etc.) is recommended instead.
+If you want to use Ubuntu 16.04, follow [this guide](https://medium.com/@tushar0618/install-ubuntu-16-04-lts-on-virtual-box-desktop-version-30dc6f1958d0) to set it up manually, or download a premade VirtualBox VDI image of Ubuntu 16.04 64-bit from [OSBoxes](https://www.osboxes.org/ubuntu/#ubuntu-16-04-vbox) and then follow the [OSGeo Live guide](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html) to set it up.
 
-## Installing software on Windows directly (only recommended for R scripting)
+For those who wish to set it up on Wageningen PCs, keep in mind that virtualisation needs to be enabled in the PC's UEFI BIOS first.
 
-### R and R Studio 
-For information on how to install R and R Studio, please refer to the [R installation manual for windows](http://cran.r-project.org/doc/manuals/r-devel/R-admin.html#Installing-R-under-Windows) and the [R Studio download page](http://www.rstudio.com/ide/download/).
+## Linux on a USB drive
 
-### Rtools
-Rtools is essential if you want to build R package. It is relatively easy to install, simply download the binary associated with your R version from [this page](http://cran.r-project.org/bin/windows/Rtools/), and follow the instructions from the installer. When prompted for ''Edit the system path'', you must say yes.
+Download the ISO image of either [OSGeo Live](https://live.osgeo.org/en/download.html) or [Ubuntu 16.04](http://releases.ubuntu.com/16.04/), and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. [Rufus](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows) on Windows.
 
-### GDAL/OGR/PROJ4 libraries
-Installing these libraries on Windows is not an absolute necessity, however they will come in handy if reprojecting data represent a large part of your work or if you plan on doing a lot of file format conversions. They are an absolute necessity if you have to work with hdf4 format data.
-Many options are available for installing these libraries on Windows systems.
+This will create a *non-persistent* Live USB. That means that any changes you do will be lost on reboot. If you want to keep your changes, you have two options: 1) Write a persistent Live USB *from within Linux*, or 2) install Linux on external/internal hard drive. A USB stick is also an (extremely slow!) external hard drive.
 
-* FWTools.
-* Installation via OSGeo4W installer.
-* By installing Quantum GIS.
+### Persistent Live USB
 
-The two latter option should be prefered over FWTools since they contain the most up to date versions of gdal.
-Note that if you want to call some gdal utilities (i.e.: `gdalwarp`, `gdal\_translate`, `gdal\_merge.py`, etc) via `system()` command from R, you will need to append the bin directory containing gdal utilities to your user or system path.
+To make a persistent Live USB, you need to: 1) have a large enough USB drive (8 GiB minimum, 16 GiB recommended), 2) be booted into Linux. This is a bit of a chicken-and-egg problem (only Linux can read and write Linux file systems, and a Linux file system is required to create a persistence file larger than 4 GiB). This point can be solved by either using an existing Linux PC, or by using two USB sticks. An example of the latter follows.
 
-### Version control software
-Installing these software is not an absolute necessity, however it might come handy if you plan to implement some of the good practices discussed in Lesson 2. Refer to Lesson 2 for more details.
+On the small USB stick, create a non-persistent Live USB by following the directions above. Boot into it, connect the large USB stick, open the terminal, and install and run the USB creation tool by running the commands:
 
-### Git and SlickSVN
-Most likely you need one OR the other, depending on whether your repository is hosted on a git or Subversion version control system. Only git is required if you plan to follow the full tutorial of Lesson 2.
-These software are very straightforward to install, simply download the executables and follow the instructions from the installer. [Git](http://git-scm.com/downloads) download page, and [slickSVN](http://www.sliksvn.com/en/download) download page.
-
-
-### Integration with the R Studio IDE
-It is possible that R Studio automatically detects Git and SlickSVN on your system, however this is not systematic. In case the Git/Svn buttons in R Studio are innactive (for instance under project - Create Project - Version Control), after installing either Git or SlickSVN, follow the steps described bellow.
-Once SlickSVN (or git) has been installed, in order to allow it to interact with RStudio, its path has to be set. Conveniently that can be done directly from within RStudio. In R Studio, navigate to Tools - Options - Git/SVN - SVN (or Git) - Browse and select the SVN.exe (or git.exe) executable in C:/Program Files/SlikSVN/bin/ (or C:/Program Files/git/bin/)
-Restart RStudio.
-
-## Specific R packages
-Not all packages are hosted on the CRAN package repository, this is the case for instance of the MODIS package that is maintained on R Forge, and requires an extra argument in the `install.packages()` function to be installed. The install line, to be copy pasted in the R shell is often given on the package R forge home page.
-
-# Linux
-
-See for more info also http://live.osgeo.org/en/index.html. Generally setup instructions are dependent on the Linux distribution, and almost always involves getting packages from the distribution's package manager.
-
-## Debian/Ubuntu
-
-### R
-
-R can be installed directly from the base repository.
-
-```bash
-sudo apt-get install r-base r-base-dev
+```{bash, eval=FALSE}
+sudo add-apt-repository universe
+sudo add-apt-repository ppa:mkusb/ppa
+sudo apt update
+sudo apt install mkusb usb-pack-efi
+sudo -H mkusb /path/to/iso/filename.iso
 ```
 
-For newer R versions and packages, see instructions [here](http://cran.r-project.org/bin/linux/ubuntu/README).
+Choose `i` "Install", `p` "Persistent live", "Use defaults" (or `upefi`, which is the default), select the target device (be *very careful* not to wipe your small USB or an internal disk!), choose the amount of space (100% is fine), select "Go". If the terminal says "Done :-)", then it's finished. If it gives an error, it might still have succeeded.
 
-### R GUIs
+Reboot, take out the small USB stick, boot from the large one, and you should be good to go.
 
-There are a variety of R GUIs available. Some of them, like RKWard, are packaged in the base repository:
+## Linux on a hard drive
 
-```bash
-sudo apt-get install rkward
+You can also install Linux on an external or internal hard drive. In case of an external one, you get a portable system, but it may be slower than when using a persistent Live USB.
+
+To install Linux onto a hard drive, boot from a Live USB (as detailed above) and double-click on the "Install" icon on the desktop, and follow the setup wizard. Be very careful at the partitioning step to make sure you don't erase something you need! See the [installing Linux on your own hardware](../Intro2Linux/installation.html) page for more details.
+
+## Installing necessary software
+
+Now that you are running Linux, you should run the install script that fetches all the needed software for you. For that, open the terminal and run the following commands:
+
+```{bash, eval=FALSE}
+sudo apt install git
+git clone https://github.com/GeoScripting-WUR/InstallLinuxScript.git
+cd InstallLinuxScript
+cd xenial       ## In case you're running Ubuntu 16.04
+cd osgeo-bionic ## In case you're running OSGeo Live 12
+bash install.sh
 ```
-
-RStudio is not currently packaged in the base repositories or any PPAs, but manual installation instructions can be found [here](http://www.rstudio.com/ide/download/desktop).
-
-### GDAL/OGR/PROJ4/GEOS libraries
-
-The easiest solution is probably to install these libraries directly from an apt repository. Recent versions of these libraries are maintained on the Ubuntu GIS ppa.
-
-```bash
-sudo add-apt-repository ppa:ubuntugis/ppa
-sudo apt-get update
-```
-
-
-Then install the libraries with apt-get.
-```bash
-sudo apt-get install gdal
-sudo apt-get install proj
-sudo apt-get install geos
-```
-
-Your system should be ready to install rgdal and rgeos R packages.
-
-## openSUSE
-
-### R
-
-R can also be installed from the base repository:
-
-```bash
-sudo zypper install R-base R-base-devel
-```
-
-Newer versions are available from the [devel:languages:R:released OBS repository](https://build.opensuse.org/package/show?project=devel%3Alanguages%3AR%3Areleased&package=R-base).
-
-### R GUIs
-
-Some R GUIs, such as RKWard, are available in the base repository:
-
-```bash
-sudo zypper install rkward
-```
-
-RStudio is packaged as part of the [devel:languages:R:released](https://build.opensuse.org/package/show?project=devel%3Alanguages%3AR%3Areleased&package=rstudio) repository, like R base.
-
-### GDAL/OGR/PROJ4/GEOS libraries
-
-These libraries are provided by the [Applications:Geo](https://build.opensuse.org/project/show/Application:Geo) OBS repository.
-
-
-# Mac
-
-Similarly as on windows we recommend to work via *VMware Player*. However, *VMware Player* is not free!!! It that is a problem, let us know that we recommend working via an USB3.0 stick and use a bootable OSGEOLIVE linux version (http://live.osgeo.org/)
-
-## Installing software directly on Mac
-
-### R and R Studio
-
-Download and install the latest R version available from: [http://cran.r-project.org/bin/macosx/]. Download and install the latest Rstudio Desktop from the [R Studio download page](http://www.rstudio.com/ide/download/).
-
-
-### GDAL/OGR/PROJ4 libraries
-Installing these libraries on Mac is not required for the Geo-scripting course as the *rgdal* and *rgeos* R package contain the GDAL C++ library. However, they will come in handy if reprojecting data represent a large part of your work or if you plan on doing a lot of file format conversions. They are an absolute necessity if you have to work with hdf4 format data.
-
-The best option for install RGDAL on mac is via the [Kynchaos website](http://www.kyngchaos.com/software/frameworks). At the time of writing this description install the \textbf{GDAL 1.10 Complete} set if you the GDAL library (not required for the course).  Check out a [tutorial](http://spatial.ly/2010/11/installing-rgdal-on-mac-os-x/) if you need more info.
-
-### Version control software
-Installing these software is not an absolute necessity, however it might come handy if you plan to implement some of the good practices discussed in Lesson 2. Refer to Lesson 2 for more details.
-
-Most likely you need one OR the other, depending on whether your repository is hosted on a git or Subversion version control system. Only git is required if you plan to follow the full tutorial of Lesson 2. See here for an excellent and clear description for how [to install SVN and Git on Mac so that you can use it within RStudio](http://www.rstudio.com/ide/docs/version_control/overview). RStudio IDE should automatically be able to find SVN and Git.
-
-See here for more info if needed: (1) [extra info for OSX](http://superuser.com/questions/455214/where-is-svn-on-os-x-mountain-lion). Git should be available to via Xcode, or (2) [this question](http://apple.stackexchange.com/questions/18470/why-is-git-not-found-after-installing-os-x-lion) helps.
-
-### Specific R packages
-Not all packages are hosted on the CRAN package repository, this is the case for instance of the MODIS package that is maintained on R Forge, and requires an extra argument in the `install.packages()` function to be installed. The install line, to be copy pasted in the R shell is often given on the package R forge home page.
-
-### Extra help
-
-Other links where you can find help:
-
-
-* [Problem when install in Git on Mac Lion os x 10.8](http://stackoverflow.com/questions/12994351/git-installation-issue-in-mountain-lion-os-x-10-8)
-
