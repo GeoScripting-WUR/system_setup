@@ -4,21 +4,24 @@ subtitle: "Setting up your system for Geo-scripting with R"
 author: "Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  html_document:
-    number_sections: yes
-    css: custom.css
-    highlight: tango
-    toc: yes
-    toc_depth: 2
+  knitrBootstrap::bootstrap_document:
+    title: "Week 1, Lesson 1: Introduction to the geo-scripting course"
+    theme: "simplex"
+    highlight: Tomorrow Night Bright
+    menu: FALSE
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
 ---
 
 # Introduction
 
-Having your system properly set-up is a cricial step before starting any geo-processing with R and Python. This short tutorial will guide you through some important steps that you should follw in order to have the required software installed and appropriately set-up. The figure below provides an overview of the different components of the system and how they are connected with each others.
+Students who take the Geoscripting course at Wageningen University are provided an environment in which all the necessary software is preinstalled. Those who wish to take the course externally, however, need to set the software up by themselves. This page provides some guidance as to how to do so.
 
-<center><img src="figs/system_overview_2.png" alt="Drawing" style="width: 700px"/></center>
+Having your system properly set-up is a cricial step before starting any geo-processing with R and Python. The figure below provides an overview of the different components of the system and how they are connected with each others.
 
-For the geo-scripting course (2017) we recommend you to work via a Linux environment as there all open-source tools, scripting languages (Python!) and their packages can be installed more easily. As such, in the PC labs we will work via SURFsara HPC Cloud, from which you are able to start up an Ubuntu Linux environment and connect to it remotely. It is also possible to connect to it from any other computer running the *X2go* software. See lesson 2 for more details.
+<center><img src="../IntroToRaster/figs/geoscripting-system-overview.svg" alt="System component graph" style="width: 700px"/></center>
+
+The easiest way to get it all running is to work via a Linux environment. There, all (or almost all) the tools are already preinstalled for you. However, getting it to run takes a bit of practice.
 
 In case you just want to use R, you can continue and still choose to work on Windows (see below). 
 For Python programming we will work within a Linux environment.
