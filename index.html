@@ -6,12 +6,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt" />
   <title>WUR Geo-scripting</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
+  <style type="text/css">code{white-space: pre;}</style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- jQuery -->
@@ -871,7 +866,7 @@
 <h1 class="title"><a href="https://geoscripting-wur.github.io/">WUR Geo-scripting</a></h1>
 <h1 class="subtitle">Setting up your system for Geo-scripting with R</h1>
 <h2 class="author">Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt</h2>
-<h3 class="date">08 gruodžio, 2018</h3>
+<h3 class="date">20 December, 2018</h3>
 </div>
 <title>
 Week 1, Lesson 1: Introduction to the geo-scripting course
@@ -881,7 +876,7 @@ Week 1, Lesson 1: Introduction to the geo-scripting course
 <div class="row row-offcanvas row-offcanvas-right">
 <div class="contents col-xs-12 col-md-10">
 <h1 id="introduction">Introduction</h1>
-<p>Students who take the Geoscripting course at Wageningen University are provided an environment in which all the necessary software is preinstalled. If you are one of them, you don’t need to read the rest of this page. Those who wish to take the course externally, however, need to set the software up by themselves. This page provides some guidance as to how to do so. It is also useful for students who have finished the course and wish to recreate the software setup on their own hardware.</p>
+<p>Students who take the Geoscripting course at Wageningen University are provided an environment in which all the necessary software is preinstalled. If you are one of them, you don't need to read the rest of this page. Those who wish to take the course externally, however, need to set the software up by themselves. This page provides some guidance as to how to do so. It is also useful for students who have finished the course and wish to recreate the software setup on their own hardware.</p>
 <p>Having your system properly set-up is a cricial step before starting any geo-processing with R and Python. The figure below provides an overview of some of the different components of the system and how they are connected with each other.</p>
 <center>
 <img src="../IntroToRaster/figs/geoscripting-system-overview.svg" alt="System component graph" style="width: 700px"/>
@@ -898,9 +893,9 @@ Week 1, Lesson 1: Introduction to the geo-scripting course
 <h2 id="linux-on-a-virtual-machine">Linux on a virtual machine</h2>
 <p>Follow the <a href="https://live.osgeo.org/en/quickstart/virtualization_quickstart.html">instructions on the OSGeo Live website</a> to set up VirtualBox and OSGeo Live.</p>
 <p>If you want to use Ubuntu 16.04, follow <a href="https://medium.com/@tushar0618/install-ubuntu-16-04-lts-on-virtual-box-desktop-version-30dc6f1958d0">this guide</a> to set it up manually, or download a premade VirtualBox VDI image of Ubuntu 16.04 64-bit from <a href="https://www.osboxes.org/ubuntu/#ubuntu-16-04-vbox">OSBoxes</a> and then follow the <a href="https://live.osgeo.org/en/quickstart/virtualization_quickstart.html">OSGeo Live guide</a> to set it up.</p>
-<p>For those who wish to set it up on Wageningen PCs, keep in mind that virtualisation needs to be enabled in the PC’s UEFI BIOS first.</p>
+<p>For those who wish to set it up on Wageningen PCs, keep in mind that virtualisation needs to be enabled in the PC's UEFI BIOS first.</p>
 <h2 id="linux-on-a-usb-drive">Linux on a USB drive</h2>
-<p>Download the ISO image of either <a href="https://live.osgeo.org/en/download.html">OSGeo Live</a> or <a href="http://releases.ubuntu.com/16.04/">Ubuntu 16.04</a>, and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. <a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows">Rufus</a> on Windows.</p>
+<p>Download the ISO image of either <a href="https://live.osgeo.org/en/download.html">OSGeo Live</a> or <a href="http://releases.ubuntu.com/16.04/">Ubuntu 16.04</a>, and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. <a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows">Rufus</a> on Windows.</p>
 <p>This will create a <em>non-persistent</em> Live USB. That means that any changes you do will be lost on reboot. If you want to keep your changes, you have two options: 1) Write a persistent Live USB <em>from within Linux</em>, or 2) install Linux on external/internal hard drive. A USB stick is also an (extremely slow!) external hard drive.</p>
 <h3 id="persistent-live-usb">Persistent Live USB</h3>
 <p>To make a persistent Live USB, you need to: 1) have a large enough USB drive (8 GiB minimum, 16 GiB recommended), 2) be booted into Linux. This is a bit of a chicken-and-egg problem (only Linux can read and write Linux file systems, and a Linux file system is required to create a persistence file larger than 4 GiB). This point can be solved by either using an existing Linux PC, or by using two USB sticks. An example of the latter follows.</p>
@@ -915,18 +910,19 @@ sudo apt update
 sudo apt install mkusb usb-pack-efi
 sudo -H mkusb /path/to/iso/filename.iso</code></pre>
 </div>
-<p>Choose <code>i</code> “Install”, <code>p</code> “Persistent live”, “Use defaults” (or <code>upefi</code>, which is the default), select the target device (be <em>very careful</em> not to wipe your small USB or an internal disk!), choose the amount of space (100% is fine), select “Go”. If the terminal says “Done :-)”, then it’s finished. If it gives an error, it might still have succeeded.</p>
+<p>When the mkusb programs is launched choose <code>d</code> (dus option). Then option 'p' &quot;Persistent live&quot;, &quot;upefi&quot;, select the target device (be <em>very careful</em> not to wipe your small USB or an internal disk!), choose the amount of space (100% is fine), select &quot;Go&quot;. If the terminal says &quot;Done :-)&quot;, then it's finished. If it gives an error, it might still have succeeded.</p>
 <p>Reboot, take out the small USB stick, boot from the large one, and you should be good to go.</p>
 <h2 id="linux-on-a-hard-drive">Linux on a hard drive</h2>
 <p>You can also install Linux on an external or internal hard drive. In case of an external one, you get a portable system, but it may be slower than when using a persistent Live USB.</p>
-<p>To install Linux onto a hard drive, boot from a Live USB (as detailed above) and double-click on the “Install” icon on the desktop, and follow the setup wizard. Be very careful at the partitioning step to make sure you don’t erase something you need! See the <a href="../Intro2Linux/installation.html">installing Linux on your own hardware</a> page for more details.</p>
+<p>To install Linux onto a hard drive, boot from a Live USB (as detailed above) and double-click on the &quot;Install&quot; icon on the desktop, and follow the setup wizard. Be very careful at the partitioning step to make sure you don't erase something you need! See the <a href="../Intro2Linux/installation.html">installing Linux on your own hardware</a> page for more details.</p>
 <h2 id="installing-necessary-software">Installing necessary software</h2>
 <p>Now that you are running Linux, you should run the install script that fetches all the needed software for you. For that, open the terminal and run the following commands:</p>
 <div class="row">
 <button class="source bash toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> bash source
 </button>
-<pre style=""><code class="source bash">sudo apt install git
+<pre style=""><code class="source bash">sudo apt update
+sudo apt install git
 git clone https://github.com/GeoScripting-WUR/InstallLinuxScript.git
 cd InstallLinuxScript
 cd xenial       ## In case you're running Ubuntu 16.04

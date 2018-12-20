@@ -61,7 +61,7 @@ sudo apt install mkusb usb-pack-efi
 sudo -H mkusb /path/to/iso/filename.iso
 ```
 
-Choose `i` "Install", `p` "Persistent live", "Use defaults" (or `upefi`, which is the default), select the target device (be *very careful* not to wipe your small USB or an internal disk!), choose the amount of space (100% is fine), select "Go". If the terminal says "Done :-)", then it's finished. If it gives an error, it might still have succeeded.
+When the mkusb programs is launched choose `d` (dus option). Then option 'p' "Persistent live", "upefi", select the target device (be *very careful* not to wipe your small USB or an internal disk!), choose the amount of space (100% is fine), select "Go". If the terminal says "Done :-)", then it's finished. If it gives an error, it might still have succeeded.
 
 Reboot, take out the small USB stick, boot from the large one, and you should be good to go.
 
@@ -76,6 +76,7 @@ To install Linux onto a hard drive, boot from a Live USB (as detailed above) and
 Now that you are running Linux, you should run the install script that fetches all the needed software for you. For that, open the terminal and run the following commands:
 
 ```{bash, eval=FALSE}
+sudo apt update
 sudo apt install git
 git clone https://github.com/GeoScripting-WUR/InstallLinuxScript.git
 cd InstallLinuxScript
