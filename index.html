@@ -6,7 +6,12 @@
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt" />
   <title>WUR Geo-scripting</title>
-  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- jQuery -->
@@ -866,7 +871,7 @@
 <h1 class="title"><a href="https://geoscripting-wur.github.io/">WUR Geo-scripting</a></h1>
 <h1 class="subtitle">Setting up your system for Geo-scripting with R</h1>
 <h2 class="author">Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt</h2>
-<h3 class="date">20 December, 2018</h3>
+<h3 class="date">21 December, 2018</h3>
 </div>
 <title>
 Week 1, Lesson 1: Introduction to the geo-scripting course
@@ -876,7 +881,20 @@ Week 1, Lesson 1: Introduction to the geo-scripting course
 <div class="row row-offcanvas row-offcanvas-right">
 <div class="contents col-xs-12 col-md-10">
 <h1 id="introduction">Introduction</h1>
-<p>Students who take the Geoscripting course at Wageningen University are provided an environment in which all the necessary software is preinstalled. If you are one of them, you don't need to read the rest of this page. Those who wish to take the course externally, however, need to set the software up by themselves. This page provides some guidance as to how to do so. It is also useful for students who have finished the course and wish to recreate the software setup on their own hardware.</p>
+<p>This page details the easiest ways to set up all the necessary software for taking the Geoscripting course. This is useful to know in the following cases:</p>
+<ul>
+<li>You are following the course externally</li>
+<li>You are following the course at Wageningen Unviersity but want to have all your software on <em>your own</em> computer</li>
+<li>You have followed the course in the past and wish to revisit some of the lessons</li>
+<li>You’d like to try running Linux on your own device</li>
+</ul>
+<div class="row">
+<div class="alert alert-success">
+<p>
+<strong>Note</strong>: regular students taking the Geoscripting course are <em>already provided</em> with an environment with all software preinstalled! This environment will be introduced in lesson 4. Thus this guide is only needed for those who want to set an equivalent environment on their own.
+</p>
+</div>
+</div>
 <p>Having your system properly set-up is a cricial step before starting any geo-processing with R and Python. The figure below provides an overview of some of the different components of the system and how they are connected with each other.</p>
 <center>
 <img src="../IntroToRaster/figs/geoscripting-system-overview.svg" alt="System component graph" style="width: 700px"/>
@@ -888,17 +906,25 @@ Week 1, Lesson 1: Introduction to the geo-scripting course
 <li>Installing Linux on a hard drive (external or internal) - best for long-term Linux use</li>
 </ul>
 <p>The <a href="http://live.osgeo.org/en/index.html">OSGeo Live</a> Linux distribution includes almost everything you need in the course. Alternatively, you can use <a href="http://releases.ubuntu.com/16.04/">Ubuntu 16.04 Xenial Xerus</a>, which is more lightweight. We have prepared an <a href="https://github.com/GeoScripting-WUR/InstallLinuxScript">install script</a> that installs all the missing tools for the course for both of these options.</p>
-<p>It is possible to get all the software running directly on Windows and macOS, but due to the lack of proper package management, we cannot guarantee support; you are on your own. If you are following just one or two lessons, that is fine, since individual lessons require just a small subset of all required software.</p>
+<p>If you are taking the course externally and want to follow just one or two lessons, you can often successfully install the needed software also on Windows and macOS. However, it is more difficult to set it up and thus we do not provide support for such installations: you are on your own for that.</p>
+<div class="row">
+<div class="alert alert-danger">
+<p>
+<strong>Warning for students taking the course</strong>: during the course we will <strong>not</strong> support non-standard software stacks, because software setup is a time-consuming, difficult to debug process, and different software versions/platforms often cause unexpected bugs. Thus please <strong>use the provided VDI</strong> introduced in lesson 4, or if that is not available, one of the options described below.
+</p>
+</div>
+</div>
 <h1 id="running-linux">Running Linux</h1>
 <h2 id="linux-on-a-virtual-machine">Linux on a virtual machine</h2>
 <p>Follow the <a href="https://live.osgeo.org/en/quickstart/virtualization_quickstart.html">instructions on the OSGeo Live website</a> to set up VirtualBox and OSGeo Live.</p>
 <p>If you want to use Ubuntu 16.04, follow <a href="https://medium.com/@tushar0618/install-ubuntu-16-04-lts-on-virtual-box-desktop-version-30dc6f1958d0">this guide</a> to set it up manually, or download a premade VirtualBox VDI image of Ubuntu 16.04 64-bit from <a href="https://www.osboxes.org/ubuntu/#ubuntu-16-04-vbox">OSBoxes</a> and then follow the <a href="https://live.osgeo.org/en/quickstart/virtualization_quickstart.html">OSGeo Live guide</a> to set it up.</p>
-<p>For those who wish to set it up on Wageningen PCs, keep in mind that virtualisation needs to be enabled in the PC's UEFI BIOS first.</p>
+<p>For those who wish to set it up on Wageningen PCs, keep in mind that virtualisation needs to be enabled in the PC’s UEFI BIOS first.</p>
 <h2 id="linux-on-a-usb-drive">Linux on a USB drive</h2>
 <p>Download the ISO image of either <a href="https://live.osgeo.org/en/download.html">OSGeo Live</a> or <a href="http://releases.ubuntu.com/16.04/">Ubuntu 16.04</a>, and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. <a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows">Rufus</a> on Windows.</p>
-<p>This will create a <em>non-persistent</em> Live USB. That means that any changes you do will be lost on reboot. If you want to keep your changes, you have two options: 1) Write a persistent Live USB <em>from within Linux</em>, or 2) install Linux on external/internal hard drive. A USB stick is also an (extremely slow!) external hard drive.</p>
+<p>This will create a <em>non-persistent</em> Live USB. That means that any changes you do will be lost on reboot. If you want to keep your changes, you have two options: 1) Write a persistent Live USB <em>from within Linux</em>, or 2) <em>install</em> Linux on external/internal hard drive.</p>
 <h3 id="persistent-live-usb">Persistent Live USB</h3>
 <p>To make a persistent Live USB, you need to: 1) have a large enough USB drive (8 GiB minimum, 16 GiB recommended), 2) be booted into Linux. This is a bit of a chicken-and-egg problem (only Linux can read and write Linux file systems, and a Linux file system is required to create a persistence file larger than 4 GiB). This point can be solved by either using an existing Linux PC, or by using two USB sticks. An example of the latter follows.</p>
+<p>In addition, you need to have the ISO image of the OS you want to install. You can either use a yet another USB stick that holds this ISO, or download the ISO from the web once booted into Linux (provided you have enough RAM to hold it).</p>
 <p>On the small USB stick, create a non-persistent Live USB by following the directions above. Boot into it, connect the large USB stick, open the terminal, and install and run the USB creation tool by running the commands:</p>
 <div class="row">
 <button class="source bash toggle btn btn-xs btn-primary">
@@ -910,11 +936,32 @@ sudo apt update
 sudo apt install mkusb usb-pack-efi
 sudo -H mkusb /path/to/iso/filename.iso</code></pre>
 </div>
-<p>When the mkusb programs is launched choose <code>d</code> (dus option). Then option 'p' &quot;Persistent live&quot;, &quot;upefi&quot;, select the target device (be <em>very careful</em> not to wipe your small USB or an internal disk!), choose the amount of space (100% is fine), select &quot;Go&quot;. If the terminal says &quot;Done :-)&quot;, then it's finished. If it gives an error, it might still have succeeded.</p>
-<p>Reboot, take out the small USB stick, boot from the large one, and you should be good to go.</p>
+<p>When the <code>mkusb</code> program is launched, choose <code>d</code> (dus option). Then option <code>p</code> “Persistent live”, <code>upefi</code>, select the target device, choose the amount of space (100% is fine), select <code>Go</code>. If the terminal says <code>Done :-)</code>, then it’s finished. If it gives an error, it might still have succeeded, as some errors are non-critical.</p>
+<div class="row">
+<div class="alert alert-danger">
+<p>
+<strong>Danger</strong>: when you are asked to select the target device, be <em>very careful</em> not to wipe your small USB or an internal disk! Make sure that the size matces the size of your large USB drive.
+</p>
+</div>
+</div>
+<p>Reboot, take out the small USB stick, boot from the large one, and you should be good to go. Any changes you make will be stored and persist between reboots.</p>
 <h2 id="linux-on-a-hard-drive">Linux on a hard drive</h2>
-<p>You can also install Linux on an external or internal hard drive. In case of an external one, you get a portable system, but it may be slower than when using a persistent Live USB.</p>
-<p>To install Linux onto a hard drive, boot from a Live USB (as detailed above) and double-click on the &quot;Install&quot; icon on the desktop, and follow the setup wizard. Be very careful at the partitioning step to make sure you don't erase something you need! See the <a href="../Intro2Linux/installation.html">installing Linux on your own hardware</a> page for more details.</p>
+<p>The methods descrived above make a <em>Live system</em>, that is, the contents of the USB drive are mostly stored in memory, which is fast but limits the amount of memory you can use for data processing. You can also <em>install</em> Linux, to make it a regular operating system. It can be installed on an internal hard drive, or even an <em>external</em> hard drive or a large, fast USB stick. In case of an external drive, you get a portable system that you can boot from any PC, but it may be slower than when using a persistent Live USB. If installed on an internal hard drive, it can live alongside another OS like Windows in a <em>dual boot</em> setup.</p>
+<p>To install Linux onto a hard drive, boot from a Live USB (as detailed above) and double-click on the “Install” icon on the desktop, and follow the setup wizard.</p>
+<div class="row">
+<div class="alert alert-danger">
+<p>
+<strong>Danger</strong>: again, be <em>very careful</em> in the partitioning step! If you damage a partition that stores valuable data or another operating system, it will be <em>permanently lost</em>!
+</p>
+</div>
+</div>
+<div class="row">
+<div class="alert alert-info">
+<p>
+<strong>Pro-tip</strong>: See the <a href="../Intro2Linux/installation.html">installing Linux on your own hardware</a> page for more details.
+</p>
+</div>
+</div>
 <h2 id="installing-necessary-software">Installing necessary software</h2>
 <p>Now that you are running Linux, you should run the install script that fetches all the needed software for you. For that, open the terminal and run the following commands:</p>
 <div class="row">

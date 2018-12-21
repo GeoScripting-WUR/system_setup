@@ -15,7 +15,16 @@ output:
 
 # Introduction
 
-Students who take the Geoscripting course at Wageningen University are provided an environment in which all the necessary software is preinstalled. If you are one of them, you don't need to read the rest of this page. Those who wish to take the course externally, however, need to set the software up by themselves. This page provides some guidance as to how to do so. It is also useful for students who have finished the course and wish to recreate the software setup on their own hardware.
+This page details the easiest ways to set up all the necessary software for taking the Geoscripting course. This is useful to know in the following cases:
+
+- You are following the course externally
+- You are following the course at Wageningen Unviersity but want to have all your software on _your own_ computer
+- You have followed the course in the past and wish to revisit some of the lessons
+- You'd like to try running Linux on your own device
+
+```{block type="alert alert-success"}
+**Note**: regular students taking the Geoscripting course are *already provided* with an environment with all software preinstalled! This environment will be introduced in lesson 4. Thus this guide is only needed for those who want to set an equivalent environment on their own.
+```
 
 Having your system properly set-up is a cricial step before starting any geo-processing with R and Python. The figure below provides an overview of some of the different components of the system and how they are connected with each other.
 
@@ -29,7 +38,11 @@ The easiest way to get it all running is to work via a Linux environment. There,
 
 The [OSGeo Live](http://live.osgeo.org/en/index.html) Linux distribution includes almost everything you need in the course. Alternatively, you can use [Ubuntu 16.04 Xenial Xerus](http://releases.ubuntu.com/16.04/), which is more lightweight. We have prepared an [install script](https://github.com/GeoScripting-WUR/InstallLinuxScript) that installs all the missing tools for the course for both of these options.
 
-It is possible to get all the software running directly on Windows and macOS, but due to the lack of proper package management, we cannot guarantee support; you are on your own. If you are following just one or two lessons, that is fine, since individual lessons require just a small subset of all required software.
+If you are taking the course externally and want to follow just one or two lessons, you can often successfully install the needed software also on Windows and macOS. However, it is more difficult to set it up and thus we do not provide support for such installations: you are on your own for that.
+
+```{block type="alert alert-danger"}
+**Warning for students taking the course**: during the course we will **not** support non-standard software stacks, because software setup is a time-consuming, difficult to debug process, and different software versions/platforms often cause unexpected bugs. Thus please **use the provided VDI** introduced in lesson 4, or if that is not available, one of the options described below.
+```
 
 # Running Linux
 
@@ -45,11 +58,13 @@ For those who wish to set it up on Wageningen PCs, keep in mind that virtualisat
 
 Download the ISO image of either [OSGeo Live](https://live.osgeo.org/en/download.html) or [Ubuntu 16.04](http://releases.ubuntu.com/16.04/), and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. [Rufus](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows) on Windows.
 
-This will create a *non-persistent* Live USB. That means that any changes you do will be lost on reboot. If you want to keep your changes, you have two options: 1) Write a persistent Live USB *from within Linux*, or 2) install Linux on external/internal hard drive. A USB stick is also an (extremely slow!) external hard drive.
+This will create a *non-persistent* Live USB. That means that any changes you do will be lost on reboot. If you want to keep your changes, you have two options: 1) Write a persistent Live USB *from within Linux*, or 2) *install* Linux on external/internal hard drive.
 
 ### Persistent Live USB
 
 To make a persistent Live USB, you need to: 1) have a large enough USB drive (8 GiB minimum, 16 GiB recommended), 2) be booted into Linux. This is a bit of a chicken-and-egg problem (only Linux can read and write Linux file systems, and a Linux file system is required to create a persistence file larger than 4 GiB). This point can be solved by either using an existing Linux PC, or by using two USB sticks. An example of the latter follows.
+
+In addition, you need to have the ISO image of the OS you want to install. You can either use a yet another USB stick that holds this ISO, or download the ISO from the web once booted into Linux (provided you have enough RAM to hold it).
 
 On the small USB stick, create a non-persistent Live USB by following the directions above. Boot into it, connect the large USB stick, open the terminal, and install and run the USB creation tool by running the commands:
 
@@ -61,15 +76,27 @@ sudo apt install mkusb usb-pack-efi
 sudo -H mkusb /path/to/iso/filename.iso
 ```
 
-When the mkusb programs is launched choose `d` (dus option). Then option 'p' "Persistent live", "upefi", select the target device (be *very careful* not to wipe your small USB or an internal disk!), choose the amount of space (100% is fine), select "Go". If the terminal says "Done :-)", then it's finished. If it gives an error, it might still have succeeded.
+When the `mkusb` program is launched, choose `d` (dus option). Then option `p` "Persistent live", `upefi`, select the target device, choose the amount of space (100% is fine), select `Go`. If the terminal says `Done :-)`, then it's finished. If it gives an error, it might still have succeeded, as some errors are non-critical.
 
-Reboot, take out the small USB stick, boot from the large one, and you should be good to go.
+```{block type="alert alert-danger"}
+**Danger**: when you are asked to select the target device, be *very careful* not to wipe your small USB or an internal disk! Make sure that the size matces the size of your large USB drive.
+```
+
+Reboot, take out the small USB stick, boot from the large one, and you should be good to go. Any changes you make will be stored and persist between reboots.
 
 ## Linux on a hard drive
 
-You can also install Linux on an external or internal hard drive. In case of an external one, you get a portable system, but it may be slower than when using a persistent Live USB.
+The methods descrived above make a *Live system*, that is, the contents of the USB drive are mostly stored in memory, which is fast but limits the amount of memory you can use for data processing. You can also *install* Linux, to make it a regular operating system. It can be installed on an internal hard drive, or even an *external* hard drive or a large, fast USB stick. In case of an external drive, you get a portable system that you can boot from any PC, but it may be slower than when using a persistent Live USB. If installed on an internal hard drive, it can live alongside another OS like Windows in a *dual boot* setup.
 
-To install Linux onto a hard drive, boot from a Live USB (as detailed above) and double-click on the "Install" icon on the desktop, and follow the setup wizard. Be very careful at the partitioning step to make sure you don't erase something you need! See the [installing Linux on your own hardware](../Intro2Linux/installation.html) page for more details.
+To install Linux onto a hard drive, boot from a Live USB (as detailed above) and double-click on the "Install" icon on the desktop, and follow the setup wizard.
+
+```{block type="alert alert-danger"}
+**Danger**: again, be *very careful* in the partitioning step! If you damage a partition that stores valuable data or another operating system, it will be *permanently lost*!
+```
+
+```{block type="alert alert-info"}
+**Pro-tip**: See the [installing Linux on your own hardware](../Intro2Linux/installation.html) page for more details.
+```
 
 ## Installing necessary software
 
