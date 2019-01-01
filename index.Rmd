@@ -50,6 +50,10 @@ If you are taking the course externally and want to follow just one or two lesso
 
 Follow the [instructions on the OSGeo Live website](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html) to set up VirtualBox and OSGeo Live.
 
+```{block, type="alert alert-info"}
+**Note**: If you get screen corruption upon booting to OSGeo Live, press right Ctrl + F1, then right Ctrl + F7.
+```
+
 If you want to use Ubuntu 16.04, follow [this guide](https://medium.com/@tushar0618/install-ubuntu-16-04-lts-on-virtual-box-desktop-version-30dc6f1958d0) to set it up manually, or download a premade VirtualBox VDI image of Ubuntu 16.04 64-bit from [OSBoxes](https://www.osboxes.org/ubuntu/#ubuntu-16-04-vbox) and then follow the [OSGeo Live guide](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html) to set it up.
 
 For those who wish to set it up on Wageningen PCs, keep in mind that virtualisation needs to be enabled in the PC's UEFI BIOS first.
