@@ -18,8 +18,7 @@ output:
 This page details the easiest ways to set up all the necessary software for taking the Geoscripting course. This is useful to know in the following cases:
 
 - You are following the course externally
-- You are following the course at Wageningen Unviersity but want to have all your software on _your own_ computer
-- You have followed the course in the past and wish to revisit some of the lessons
+- You have followed the course in the past and wish to revisit some of the lessons or want to have all the same software on _your own_ computer
 - You'd like to try running Linux on your own device
 
 ```{block type="alert alert-success"}
