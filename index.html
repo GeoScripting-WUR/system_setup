@@ -1,17 +1,20 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt" />
   <title>WUR Geo-scripting</title>
-  <style type="text/css">
+  <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- jQuery -->
@@ -867,12 +870,12 @@
   </style>
 </head>
 <body>
-<div id="header">
+<header id="title-block-header">
 <h1 class="title"><a href="https://geoscripting-wur.github.io/">WUR Geo-scripting</a></h1>
-<h1 class="subtitle">Setting up your system for Geo-scripting with R</h1>
-<h2 class="author">Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt</h2>
-<h3 class="date">03 January, 2019</h3>
-</div>
+<p class="subtitle">Setting up your system for Geo-scripting with R</p>
+<p class="author">Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt</p>
+<p class="date">06 gruodžio, 2019</p>
+</header>
 <title>
 Week 1, Lesson 1: Introduction to the geo-scripting course
 </title>
@@ -904,7 +907,7 @@ Week 1, Lesson 1: Introduction to the geo-scripting course
 <li>Running Linux off of a USB drive (Live system) - best support and ease-of-setup ratio</li>
 <li>Installing Linux on a hard drive (external or internal) - best for long-term Linux use</li>
 </ul>
-<p>The <a href="http://live.osgeo.org/en/index.html">OSGeo Live</a> Linux distribution includes almost everything you need in the course. Alternatively, you can use <a href="http://releases.ubuntu.com/16.04/">Ubuntu 16.04 Xenial Xerus</a>, which is more lightweight. We have prepared an <a href="https://github.com/GeoScripting-WUR/InstallLinuxScript">install script</a> that installs all the missing tools for the course for both of these options.</p>
+<p>The <a href="http://live.osgeo.org/en/index.html">OSGeo Live</a> Linux distribution includes almost everything you need in the course. Alternatively, you can use <a href="http://releases.ubuntu.com/18.04/">Ubuntu 18.04 Bionic Beaver</a>, which is more lightweight. We have prepared an <a href="https://github.com/GeoScripting-WUR/InstallLinuxScript">install script</a> that installs all the missing tools for the course for both of these options.</p>
 <p>If you are taking the course externally and want to follow just one or two lessons, you can often successfully install the needed software also on Windows and macOS. However, it is more difficult to set it up and thus we do not provide support for such installations: you are on your own for that.</p>
 <div class="row">
 <div class="alert alert-danger">
@@ -923,10 +926,10 @@ Week 1, Lesson 1: Introduction to the geo-scripting course
 </p>
 </div>
 </div>
-<p>If you want to use Ubuntu 16.04, follow <a href="https://medium.com/@tushar0618/install-ubuntu-16-04-lts-on-virtual-box-desktop-version-30dc6f1958d0">this guide</a> to set it up manually, or download a premade VirtualBox VDI image of Ubuntu 16.04 64-bit from <a href="https://www.osboxes.org/ubuntu/#ubuntu-16-04-vbox">OSBoxes</a> and then follow the <a href="https://live.osgeo.org/en/quickstart/virtualization_quickstart.html">OSGeo Live guide</a> to set it up.</p>
+<p>If you want to use Ubuntu 18.04, follow <a href="https://linuxhint.com/install_ubuntu_18-04_virtualbox/">this guide</a> to set it up manually, or download a premade VirtualBox VDI image of Ubuntu 18.04 64-bit from <a href="https://www.osboxes.org/ubuntu/#ubuntu-1804-vbox">OSBoxes</a> and then follow the <a href="https://live.osgeo.org/en/quickstart/virtualization_quickstart.html">OSGeo Live guide</a> to set it up.</p>
 <p>For those who wish to set it up on Wageningen PCs, keep in mind that virtualisation needs to be enabled in the PC’s UEFI BIOS first.</p>
 <h2 id="linux-on-a-usb-drive">Linux on a USB drive</h2>
-<p>Download the ISO image of either <a href="https://live.osgeo.org/en/download.html">OSGeo Live</a> or <a href="http://releases.ubuntu.com/16.04/">Ubuntu 16.04</a>, and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. <a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows">Rufus</a> on Windows.</p>
+<p>Download the ISO image of either <a href="https://live.osgeo.org/en/download.html">OSGeo Live</a> or <a href="http://releases.ubuntu.com/18.04/">Ubuntu 18.04</a>, and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. <a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows">Rufus</a> on Windows.</p>
 <p>This will create a <em>non-persistent</em> Live USB. That means that any changes you do will be lost on reboot. If you want to keep your changes, you have two options: 1) Write a persistent Live USB <em>from within Linux</em>, or 2) <em>install</em> Linux on external/internal hard drive.</p>
 <h3 id="persistent-live-usb">Persistent Live USB</h3>
 <p>To make a persistent Live USB, you need to: 1) have a large enough USB drive (8 GiB minimum, 16 GiB recommended), 2) be booted into Linux. This is a bit of a chicken-and-egg problem (only Linux can read and write Linux file systems, and a Linux file system is required to create a persistence file larger than 4 GiB). This point can be solved by either using an existing Linux PC, or by using two USB sticks. An example of the latter follows.</p>
@@ -946,7 +949,7 @@ sudo -H mkusb /path/to/iso/filename.iso</code></pre>
 <div class="row">
 <div class="alert alert-danger">
 <p>
-<strong>Danger</strong>: when you are asked to select the target device, be <em>very careful</em> not to wipe your small USB or an internal disk! Make sure that the size matces the size of your large USB drive.
+<strong>Danger</strong>: when you are asked to select the target device, be <em>very careful</em> not to wipe your small USB or an internal disk! Make sure that the size matches the size of your large USB drive.
 </p>
 </div>
 </div>
@@ -978,8 +981,8 @@ sudo -H mkusb /path/to/iso/filename.iso</code></pre>
 sudo apt install git
 git clone https://github.com/GeoScripting-WUR/InstallLinuxScript.git
 cd InstallLinuxScript
-cd xenial       ## In case you're running Ubuntu 16.04
-cd osgeo-bionic ## In case you're running OSGeo Live 12
+cd bionic       ## In case you're running Ubuntu 18.04
+cd osgeo-bionic ## In case you're running OSGeo Live 13
 bash install.sh</code></pre>
 </div>
 </div>
