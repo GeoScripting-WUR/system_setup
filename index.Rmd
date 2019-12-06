@@ -1,11 +1,9 @@
 ---
-title: "[WUR Geo-scripting](https://geoscripting-wur.github.io/)"
-subtitle: "Setting up your system for Geo-scripting with R"
+pagetitle: "Setting up your system for Geo-scripting with R"
 author: "Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   knitrBootstrap::bootstrap_document:
-    title: "Week 1, Lesson 1: Introduction to the geo-scripting course"
     theme: "simplex"
     highlight: Tomorrow Night Bright
     menu: FALSE
