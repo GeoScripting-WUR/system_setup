@@ -29,11 +29,11 @@ Having your system properly set-up is a cricial step before starting any geo-pro
 
 The easiest way to get it all running is to work via a Linux environment. There, all (or almost all) the tools are already preinstalled for you. However, getting it to run takes a bit of practice. There are a few options:
 
-* Running Linux from a virtual machine inside Windows/macOS - easiest but slowest
+* Running Linux from a virtual machine inside Windows/macOS - easiest but slowest performance
 * Running Linux off of a USB drive (Live system) - best support and ease-of-setup ratio
 * Installing Linux on a hard drive (external or internal) - best for long-term Linux use
 
-The [OSGeo Live](http://live.osgeo.org/en/index.html) Linux distribution includes almost everything you need in the course. Alternatively, you can use [Ubuntu 18.04 Bionic Beaver](http://releases.ubuntu.com/18.04/), which is more lightweight. We have prepared an [install script](https://github.com/GeoScripting-WUR/InstallLinuxScript) that installs all the missing tools for the course for both of these options.
+Either way, one needs to choose a distribution. For the course there are two options: 1) the [OSGeo Live](http://live.osgeo.org/en/index.html) Linux distribution is easy to set up and includes almost everything you need in the course, but it's a different environment from the virtual machines that are provided in the course. 2) [Ubuntu 20.04 Focal Fossa](http://releases.ubuntu.com/20.04/) is more lightweight and does not have any of the tools installed, but can be converted to the exact same environment we use during the course. We have prepared an [install script](https://github.com/GeoScripting-WUR/InstallLinuxScript) that installs all the missing tools for the course for both of these options. **Please don't forget to check the final section of this page about how to use it to install all the needed tools!**
 
 If you are taking the course externally and want to follow just one or two lessons, you can often successfully install the needed software also on Windows and macOS. However, it is more difficult to set it up and thus we do not provide support for such installations: you are on your own for that.
 
@@ -45,19 +45,19 @@ If you are taking the course externally and want to follow just one or two lesso
 
 ## Linux on a virtual machine
 
-Follow the [instructions on the OSGeo Live website](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html) to set up VirtualBox and OSGeo Live.
+If you prefer OSGeo Live, follow the [instructions on the OSGeo Live website](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html) to set up VirtualBox and OSGeo Live.
 
 ```{block, type="alert alert-info"}
 **Note**: If you get screen corruption upon booting to OSGeo Live, press right Ctrl + F1, then right Ctrl + F7.
 ```
 
-If you want to use Ubuntu 18.04, follow [this guide](https://linuxhint.com/install_ubuntu_18-04_virtualbox/) to set it up manually, or download a premade VirtualBox VDI image of Ubuntu 18.04 64-bit from [OSBoxes](https://www.osboxes.org/ubuntu/#ubuntu-1804-vbox) and then follow the [OSGeo Live guide](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html) to set it up.
+If you want to use Ubuntu 20.04, follow [this guide](https://linuxhint.com/install_ubuntu_virtualbox_2004/) to set it up manually, or download a premade VirtualBox VDI image of Ubuntu 20.04 64-bit from [OSBoxes](https://www.osboxes.org/ubuntu/#ubuntu-20-04-vbox) and then follow the [OSGeo Live guide](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html) to set it up.
 
 For those who wish to set it up on Wageningen PCs, keep in mind that virtualisation needs to be enabled in the PC's UEFI BIOS first.
 
 ## Linux on a USB drive
 
-Download the ISO image of either [OSGeo Live](https://live.osgeo.org/en/download.html) or [Ubuntu 18.04](http://releases.ubuntu.com/18.04/), and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. [Rufus](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows) on Windows.
+Download the ISO image of either [OSGeo Live](https://live.osgeo.org/en/download.html) or [Ubuntu 20.04](http://releases.ubuntu.com/20.04/), and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. [Rufus](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows) on Windows.
 
 This will create a *non-persistent* Live USB. That means that any changes you do will be lost on reboot. If you want to keep your changes, you have two options: 1) Write a persistent Live USB *from within Linux*, or 2) *install* Linux on external/internal hard drive.
 
@@ -65,9 +65,9 @@ This will create a *non-persistent* Live USB. That means that any changes you do
 
 To make a persistent Live USB, you need to: 1) have a large enough USB drive (8 GiB minimum, 16 GiB recommended), 2) be booted into Linux. This is a bit of a chicken-and-egg problem (only Linux can read and write Linux file systems, and a Linux file system is required to create a persistence file larger than 4 GiB). This point can be solved by either using an existing Linux PC, or by using two USB sticks. An example of the latter follows.
 
-In addition, you need to have the ISO image of the OS you want to install. You can either use a yet another USB stick that holds this ISO, or download the ISO from the web once booted into Linux (provided you have enough RAM to hold it).
+In addition, you need to have the ISO image of the OS you want to install. You can either use a yet another USB stick that holds this ISO, or download the ISO from the web once booted into Linux (provided you have enough RAM to hold it). It's also possible to access an ISO file that you downloaded on Windows, but that requires Windows to be properly shut down (i.e. disable hibernation before shutting down) before booting Linux, or else Linux will refuse to open a Windows file system so as not to damage it.
 
-On the small USB stick, create a non-persistent Live USB by following the directions above. Boot into it, connect the large USB stick, open the terminal, and install and run the USB creation tool by running the commands:
+On a small USB stick (this can be ~4 GiB), create a non-persistent Live USB by following the directions above. Boot into it, connect the large USB stick, open the terminal, and install and run the USB creation tool by running the commands:
 
 ```{bash, eval=FALSE}
 sudo add-apt-repository universe
@@ -108,7 +108,7 @@ sudo apt update
 sudo apt install git
 git clone https://github.com/GeoScripting-WUR/InstallLinuxScript.git
 cd InstallLinuxScript
-cd bionic       ## In case you're running Ubuntu 18.04
+cd focal        ## In case you're running Ubuntu 20.04
 cd osgeo-bionic ## In case you're running OSGeo Live 13
 bash install.sh
 ```

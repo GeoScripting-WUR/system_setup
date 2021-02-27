@@ -1,40 +1,39 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt" />
   <title>Setting up your system for Geo-scripting with R</title>
-  <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-  
+
   <!-- bootstrap -->
   <!--<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"  id="style">-->
   <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  
+
   <!-- highlight.js -->
   <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/styles/default.min.css" rel="stylesheet" id="code-style">-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/highlight.min.js"></script>
   <script>
   hljs.LANGUAGES.r=function(a){var b="([a-zA-Z]|\\.[a-zA-Z.])[a-zA-Z0-9._]*";return{c:[a.HCM,{b:b,l:b,k:{keyword:"function if in break next repeat else for return switch while try tryCatch|10 stop warning require library attach detach source setMethod setGeneric setGroupGeneric setClass ...|10",literal:"NULL NA TRUE FALSE T F Inf NaN NA_integer_|10 NA_real_|10 NA_character_|10 NA_complex_|10"},r:0},{cN:"number",b:"0[xX][0-9a-fA-F]+[Li]?\\b",r:0},{cN:"number",b:"\\d+(?:[eE][+\\-]?\\d*)?L\\b",r:0},{cN:"number",b:"\\d+\\.(?!\\d)(?:i\\b)?",r:0},{cN:"number",b:"\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",r:0},{b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[a.BE],r:0},{cN:"string",b:"'",e:"'",c:[a.BE],r:0}]}}(hljs); </script>
   <!--<script type="text/javascript", src="https://yandex.st/highlightjs/7.3/languages/r.min.js"></script>-->
-  
+
   <!-- Manific Popup -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/0.8.9/jquery.magnific-popup.min.js"></script>
-  
+
   <script type="text/javascript"
     src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
@@ -42,16 +41,16 @@
   // Function to generate the dynamic table of contents
   jQuery.fn.generate_TOC = function () {
     var base = $(this[0]);
-  
+
     var selectors = ['h1', 'h2', 'h3', 'h4'];
-  
+
     var last_ptr = [{}, {}, {}, {}];
-  
+
     var anchors = {};
-  
+
     generate_anchor = function (text) {
       var test = text.replace(/\W/g, '_');
-  
+
       while(test in anchors){
         //if no suffix, add one
         if(test.match(/_\d+$/) === null){
@@ -65,13 +64,13 @@
       anchors[test]=1;
       return(test);
     }
-  
+
     $(selectors.join(',')).filter(function(index) { return $(this).parent().attr("id") != 'header'; }).each(function () {
-  
+
       var heading = $(this);
       var idx = selectors.indexOf(heading.prop('tagName').toLowerCase());
       var itr = 0;
-  
+
       while (itr <= idx) {
         if (jQuery.isEmptyObject(last_ptr[itr])) {
           last_ptr[itr] = $('<ul>').addClass('nav');
@@ -93,10 +92,10 @@
       var a = $('<a>')
       .text(heading.text())
       .attr('href', '#' + anchor);
-  
+
     var li = $('<li>')
       .append(a);
-  
+
     last_ptr[idx].append(li);
     for (i = idx + 1; i < last_ptr.length; i++) {
       last_ptr[i] = {};
@@ -106,35 +105,35 @@
   /* run scripts when document is ready */
   $(function() {
     "use strict";
-  
+
     var $window = $(window);
     var $body = $(document.body);
-  
+
     /* size of thumbnails */
-  
+
     var hidden_types = ['source']
     var output_types = ['output', 'message', 'warning', 'error']
-  
+
     /* style tables */
     $('table').addClass('table table-striped table-bordered table-hover table-condensed');
-  
+
     $('pre code').each(function(i, e) {
       hljs.highlightBlock(e);
     });
-  
+
     /* Magnific Popup */
     $(".thumbnail").each(function(){
       $(this).magnificPopup({
         disableOn: 768,
         closeOnContentClick: true,
-  
+
         type: 'image',
         items: {
           src: $(this).find('img').attr('src'),
         }
       });
     });
-  
+
     function toggle_block(obj, show) {
       var span = obj.find('span');
       if(show === true){
@@ -146,7 +145,7 @@
         obj.next('pre').slideUp();
       }
     }
-  
+
     function toggle_thumbnails(imgs, show){
       if(show === true){
         imgs.parents().show()
@@ -156,7 +155,7 @@
         imgs.slideUp(400, function(){ $(this).parent().hide(); });
       }
     }
-  
+
     function global_toggle(obj){
       var type = obj.attr('type');
       var show = !obj.parent('li').hasClass('active');
@@ -173,14 +172,14 @@
         $('.toggle.' + type).each(function() { toggle_block($(this), show); });
       }
     }
-  
+
     /* onclick toggle next code block */
     $('.toggle').click(function() {
       var span = $(this).find('span');
       toggle_block($(this), !span.hasClass('glyphicon-chevron-down'));
       return false
     })
-  
+
     // global toggles
     $('.toggle-global').click(function(){
       var type = $(this).attr('type');
@@ -206,18 +205,18 @@
       $('body > #wrap > .container > .row').append('<div class="col-md-2"><div id="toc" class="well sidebar sidenav affix hidden-print"/></div>');
       $('#toc').generate_TOC();
     }
-  
+
     $.each(hidden_types, function(i, type) {
       $('li[type=' + type + ']').each(function(){ global_toggle($(this)); });
     });
-  
+
     /* remove paragraphs with no content */
     $('p:empty').remove();
-  
+
     $body.scrollspy({
       target: '.sidebar',
     });
-  
+
     /* theme switch */
     $('.theme-switch').click(function(){
       var css = $('link[title=' + $(this).attr('title') + ']');
@@ -234,14 +233,14 @@
       $(this).closest('li').addClass('active');
       return false;
     });
-  
+
     //TODO refresh on show/hide
     $window.on('load', function () {
       $body.scrollspy('refresh');
     })
-  
+
   });
-  
+
   </script>
   <style>
   /* Knitr_bootstrap styles */
@@ -256,11 +255,11 @@
   .toggle{
     text-transform: capitalize;
   }
-  
+
   .toggle-global{
     text-transform: capitalize;
   }
-  
+
   /* Sticky footer styles */
   * {
     margin:0;
@@ -272,7 +271,7 @@
       /* The html and body elements cannot have any padding or margin. */
       /*overflow-x: hidden;*/
   }
-  
+
   /* Wrapper for page content to push down footer */
   #wrap {
       min-height: 100%;
@@ -281,43 +280,43 @@
       /* Negative indent footer by it's height */
       margin: 0 auto -120px;
   }
-  
+
   /* Set the fixed height of the footer here */
   #push,
   #footer {
       height: 120px;
   }
-  
+
   #footer {
     text-align: center;
   }
-  
+
   /* Top level subheader elements.  These are the first nested items underneath a header element. */
   .header li {
     font-size: 20px;
   }
-  
+
   /* Makes the font smaller for all subheader elements. */
   .sub-header li {
       font-size: 12px;
   }
-  
+
   button.thumbnails {
     margin-left:0px;
   }
-  
+
   /*
    * Side navigation
    *
    * Scrollspy and affixed enhanced navigation to highlight sections and secondary
    * sections of docs content.
    */
-  
+
   /* By default it's not affixed in mobile views, so undo that */
   .sidebar.affix {
     position: static;
   }
-  
+
   /* First level of nav */
   .sidenav {
     margin-top: 30px;
@@ -326,7 +325,7 @@
     padding-bottom: 10px;
     border-radius: 5px;
   }
-  
+
   /* All levels of nav */
   .sidebar .nav > li > a {
     display: block;
@@ -344,7 +343,7 @@
     background-color: transparent;
     border-right: 1px solid;
   }
-  
+
   /* Nav: second level (shown on .active) */
   .sidebar .nav .nav {
     display: none; /* Hide by default, but at >768px, show it */
@@ -356,14 +355,14 @@
     padding-left: 30px;
     font-size: 90%;
   }
-  
+
   .sidebar .nav .nav .nav > li > a {
     padding-left: 40px;
   }
   .sidebar .nav .nav .nav .nav > li > a {
     padding-left: 50px;
   }
-  
+
   /* Show and affix the side nav when space allows it */
   @media screen and (min-width: 992px) {
     .sidebar .nav > .active > ul {
@@ -395,14 +394,14 @@
       width: 263px;
     }
   }
-  
+
   #toc {
     padding: 10px 0px;
     margin:0;
     border:0;
   }
-  
-  
+
+
   .panel pre {
     margin: 0;
     padding: 0;
@@ -427,7 +426,7 @@
     background: #0b0b0b;
     opacity: 0.8;
     filter: alpha(opacity=80); }
-  
+
   .mfp-wrap {
     top: 0;
     left: 0;
@@ -437,7 +436,7 @@
     position: fixed;
     outline: none !important;
     -webkit-backface-visibility: hidden; }
-  
+
   .mfp-container {
     text-align: center;
     position: absolute;
@@ -449,16 +448,16 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
-  
+
   .mfp-container:before {
     content: '';
     display: inline-block;
     height: 100%;
     vertical-align: middle; }
-  
+
   .mfp-align-top .mfp-container:before {
     display: none; }
-  
+
   .mfp-content {
     position: relative;
     display: inline-block;
@@ -466,30 +465,30 @@
     margin: 0 auto;
     text-align: left;
     z-index: 1045; }
-  
+
   .mfp-inline-holder .mfp-content,
   .mfp-ajax-holder .mfp-content {
     width: 100%;
     cursor: auto; }
-  
+
   .mfp-ajax-cur {
     cursor: progress; }
-  
+
   .mfp-zoom-out-cur,
   .mfp-zoom-out-cur .mfp-image-holder .mfp-close {
     cursor: -moz-zoom-out;
     cursor: -webkit-zoom-out;
     cursor: zoom-out; }
-  
+
   .mfp-zoom {
     cursor: pointer;
     cursor: -webkit-zoom-in;
     cursor: -moz-zoom-in;
     cursor: zoom-in; }
-  
+
   .mfp-auto-cursor .mfp-content {
     cursor: auto; }
-  
+
   .mfp-close,
   .mfp-arrow,
   .mfp-preloader,
@@ -497,13 +496,13 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none; }
-  
+
   .mfp-loading.mfp-figure {
     display: none; }
-  
+
   .mfp-hide {
     display: none !important; }
-  
+
   .mfp-preloader {
     color: #cccccc;
     position: absolute;
@@ -514,19 +513,19 @@
     left: 8px;
     right: 8px;
     z-index: 1044; }
-  
+
   .mfp-preloader a {
     color: #cccccc; }
-  
+
   .mfp-preloader a:hover {
     color: white; }
-  
+
   .mfp-s-ready .mfp-preloader {
     display: none; }
-  
+
   .mfp-s-error .mfp-content {
     display: none; }
-  
+
   button.mfp-close,
   button.mfp-arrow {
     overflow: visible;
@@ -539,11 +538,11 @@
     z-index: 1046;
     -webkit-box-shadow: none;
     box-shadow: none; }
-  
+
   button::-moz-focus-inner {
     padding: 0;
     border: 0; }
-  
+
   .mfp-close {
     width: 44px;
     height: 44px;
@@ -563,10 +562,10 @@
       opacity: 1; }
     .mfp-close:active {
       top: 1px; }
-  
+
   .mfp-close-btn-in .mfp-close {
     color: #333333; }
-  
+
   .mfp-image-holder .mfp-close,
   .mfp-iframe-holder .mfp-close {
     color: white;
@@ -574,7 +573,7 @@
     text-align: right;
     padding-right: 6px;
     width: 100%; }
-  
+
   .mfp-counter {
     position: absolute;
     top: 0;
@@ -582,7 +581,7 @@
     color: #cccccc;
     font-size: 12px;
     line-height: 18px; }
-  
+
   .mfp-arrow {
     position: absolute;
     opacity: 0.65;
@@ -593,14 +592,14 @@
     width: 90px;
     height: 110px;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
-  
+
   .mfp-arrow:active {
     margin-top: -54px; }
-  
+
   .mfp-arrow:hover,
   .mfp-arrow:focus {
     opacity: 1; }
-  
+
   .mfp-arrow:before, .mfp-arrow:after,
   .mfp-arrow .mfp-b,
   .mfp-arrow .mfp-a {
@@ -623,7 +622,7 @@
   .mfp-arrow .mfp-b {
     border-top-width: 21px;
     border-bottom-width: 21px; }
-  
+
   .mfp-arrow-left {
     left: 0; }
     .mfp-arrow-left:after,
@@ -634,7 +633,7 @@
     .mfp-arrow-left .mfp-b {
       margin-left: 25px;
       border-right: 27px solid #3f3f3f; }
-  
+
   .mfp-arrow-right {
     right: 0; }
     .mfp-arrow-right:after,
@@ -644,22 +643,22 @@
     .mfp-arrow-right:before,
     .mfp-arrow-right .mfp-b {
       border-left: 27px solid #3f3f3f; }
-  
+
   .mfp-iframe-holder {
     padding-top: 40px;
     padding-bottom: 40px; }
-  
+
   .mfp-iframe-holder .mfp-content {
     line-height: 0;
     width: 100%;
     max-width: 900px; }
-  
+
   .mfp-iframe-scaler {
     width: 100%;
     height: 0;
     overflow: hidden;
     padding-top: 56.25%; }
-  
+
   .mfp-iframe-scaler iframe {
     position: absolute;
     display: block;
@@ -669,10 +668,10 @@
     height: 100%;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
     background: black; }
-  
+
   .mfp-iframe-holder .mfp-close {
     top: -40px; }
-  
+
   /* Main image in popup */
   img.mfp-img {
     width: auto;
@@ -685,7 +684,7 @@
     box-sizing: border-box;
     padding: 40px 0 40px;
     margin: 0 auto; }
-  
+
   /* The shadow behind the image */
   .mfp-figure:after {
     content: '';
@@ -700,10 +699,10 @@
     z-index: -1;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
     background: #444444; }
-  
+
   .mfp-figure {
     line-height: 0; }
-  
+
   .mfp-bottom-bar {
     margin-top: -36px;
     position: absolute;
@@ -711,26 +710,26 @@
     left: 0;
     width: 100%;
     cursor: auto; }
-  
+
   .mfp-title {
     text-align: left;
     line-height: 18px;
     color: #f3f3f3;
     word-wrap: break-word;
     padding-right: 36px; }
-  
+
   .mfp-figure small {
     color: #bdbdbd;
     display: block;
     font-size: 12px;
     line-height: 14px; }
-  
+
   .mfp-image-holder .mfp-content {
     max-width: 100%; }
-  
+
   .mfp-gallery .mfp-image-holder .mfp-figure {
     cursor: pointer; }
-  
+
   @media screen and (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
     /**
      * Remove all paddings around the image on small screen
@@ -738,15 +737,15 @@
     .mfp-img-mobile .mfp-image-holder {
       padding-left: 0;
       padding-right: 0; }
-  
+
     .mfp-img-mobile img.mfp-img {
       padding: 0; }
-  
+
     /* The shadow behind the image */
     .mfp-img-mobile .mfp-figure:after {
       top: 0;
       bottom: 0; }
-  
+
     .mfp-img-mobile .mfp-bottom-bar {
       background: rgba(0, 0, 0, 0.6);
       bottom: 0;
@@ -757,14 +756,14 @@
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box; }
-  
+
     .mfp-img-mobile .mfp-bottom-bar:empty {
       padding: 0; }
-  
+
     .mfp-img-mobile .mfp-counter {
       right: 5px;
       top: 3px; }
-  
+
     .mfp-img-mobile .mfp-close {
       top: 0;
       right: 0;
@@ -775,7 +774,7 @@
       position: fixed;
       text-align: center;
       padding: 0; }
-  
+
     .mfp-img-mobile .mfp-figure small {
       display: inline;
       margin-left: 5px; } }
@@ -783,15 +782,15 @@
     .mfp-arrow {
       -webkit-transform: scale(0.75);
       transform: scale(0.75); }
-  
+
     .mfp-arrow-left {
       -webkit-transform-origin: 0;
       transform-origin: 0; }
-  
+
     .mfp-arrow-right {
       -webkit-transform-origin: 100%;
       transform-origin: 100%; }
-  
+
     .mfp-container {
       padding-left: 6px;
       padding-right: 6px; } }
@@ -811,7 +810,7 @@
     top: 0;
     right: 0;
     padding-top: 0; }
-  
+
   //Magnific overrides
   .mfp-image img{
     background: white;
@@ -819,12 +818,12 @@
   .mfp-figure:after {
     background: white;
   }
-  
+
   /*
    * Off Canvas navbar toggle right
    * --------------------------------------------------
    */
-  
+
   @media screen and (max-width: 768px) {
     .row-offcanvas .collapsing {
     -webkit-transition: none 0;
@@ -894,11 +893,11 @@
 </center>
 <p>The easiest way to get it all running is to work via a Linux environment. There, all (or almost all) the tools are already preinstalled for you. However, getting it to run takes a bit of practice. There are a few options:</p>
 <ul>
-<li>Running Linux from a virtual machine inside Windows/macOS - easiest but slowest</li>
+<li>Running Linux from a virtual machine inside Windows/macOS - easiest but slowest performance</li>
 <li>Running Linux off of a USB drive (Live system) - best support and ease-of-setup ratio</li>
 <li>Installing Linux on a hard drive (external or internal) - best for long-term Linux use</li>
 </ul>
-<p>The <a href="http://live.osgeo.org/en/index.html">OSGeo Live</a> Linux distribution includes almost everything you need in the course. Alternatively, you can use <a href="http://releases.ubuntu.com/18.04/">Ubuntu 18.04 Bionic Beaver</a>, which is more lightweight. We have prepared an <a href="https://github.com/GeoScripting-WUR/InstallLinuxScript">install script</a> that installs all the missing tools for the course for both of these options.</p>
+<p>Either way, one needs to choose a distribution. For the course there are two options: 1) the <a href="http://live.osgeo.org/en/index.html">OSGeo Live</a> Linux distribution is easy to set up and includes almost everything you need in the course, but it’s a different environment from the virtual machines that are provided in the course. 2) <a href="http://releases.ubuntu.com/20.04/">Ubuntu 20.04 Focal Fossa</a> is more lightweight and does not have any of the tools installed, but can be converted to the exact same environment we use during the course. We have prepared an <a href="https://github.com/GeoScripting-WUR/InstallLinuxScript">install script</a> that installs all the missing tools for the course for both of these options. <strong>Please don’t forget to check the final section of this page about how to use it to install all the needed tools!</strong></p>
 <p>If you are taking the course externally and want to follow just one or two lessons, you can often successfully install the needed software also on Windows and macOS. However, it is more difficult to set it up and thus we do not provide support for such installations: you are on your own for that.</p>
 <div class="row">
 <div class="alert alert-danger">
@@ -909,7 +908,7 @@
 </div>
 <h1 id="running-linux">Running Linux</h1>
 <h2 id="linux-on-a-virtual-machine">Linux on a virtual machine</h2>
-<p>Follow the <a href="https://live.osgeo.org/en/quickstart/virtualization_quickstart.html">instructions on the OSGeo Live website</a> to set up VirtualBox and OSGeo Live.</p>
+<p>If you prefer OSGeo Live, follow the <a href="https://live.osgeo.org/en/quickstart/virtualization_quickstart.html">instructions on the OSGeo Live website</a> to set up VirtualBox and OSGeo Live.</p>
 <div class="row">
 <div class="alert alert-info">
 <p>
@@ -917,15 +916,15 @@
 </p>
 </div>
 </div>
-<p>If you want to use Ubuntu 18.04, follow <a href="https://linuxhint.com/install_ubuntu_18-04_virtualbox/">this guide</a> to set it up manually, or download a premade VirtualBox VDI image of Ubuntu 18.04 64-bit from <a href="https://www.osboxes.org/ubuntu/#ubuntu-1804-vbox">OSBoxes</a> and then follow the <a href="https://live.osgeo.org/en/quickstart/virtualization_quickstart.html">OSGeo Live guide</a> to set it up.</p>
+<p>If you want to use Ubuntu 20.04, follow <a href="https://linuxhint.com/install_ubuntu_virtualbox_2004/">this guide</a> to set it up manually, or download a premade VirtualBox VDI image of Ubuntu 20.04 64-bit from <a href="https://www.osboxes.org/ubuntu/#ubuntu-20-04-vbox">OSBoxes</a> and then follow the <a href="https://live.osgeo.org/en/quickstart/virtualization_quickstart.html">OSGeo Live guide</a> to set it up.</p>
 <p>For those who wish to set it up on Wageningen PCs, keep in mind that virtualisation needs to be enabled in the PC’s UEFI BIOS first.</p>
 <h2 id="linux-on-a-usb-drive">Linux on a USB drive</h2>
-<p>Download the ISO image of either <a href="https://live.osgeo.org/en/download.html">OSGeo Live</a> or <a href="http://releases.ubuntu.com/18.04/">Ubuntu 18.04</a>, and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. <a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows">Rufus</a> on Windows.</p>
+<p>Download the ISO image of either <a href="https://live.osgeo.org/en/download.html">OSGeo Live</a> or <a href="http://releases.ubuntu.com/20.04/">Ubuntu 20.04</a>, and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. <a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows">Rufus</a> on Windows.</p>
 <p>This will create a <em>non-persistent</em> Live USB. That means that any changes you do will be lost on reboot. If you want to keep your changes, you have two options: 1) Write a persistent Live USB <em>from within Linux</em>, or 2) <em>install</em> Linux on external/internal hard drive.</p>
 <h3 id="persistent-live-usb">Persistent Live USB</h3>
 <p>To make a persistent Live USB, you need to: 1) have a large enough USB drive (8 GiB minimum, 16 GiB recommended), 2) be booted into Linux. This is a bit of a chicken-and-egg problem (only Linux can read and write Linux file systems, and a Linux file system is required to create a persistence file larger than 4 GiB). This point can be solved by either using an existing Linux PC, or by using two USB sticks. An example of the latter follows.</p>
-<p>In addition, you need to have the ISO image of the OS you want to install. You can either use a yet another USB stick that holds this ISO, or download the ISO from the web once booted into Linux (provided you have enough RAM to hold it).</p>
-<p>On the small USB stick, create a non-persistent Live USB by following the directions above. Boot into it, connect the large USB stick, open the terminal, and install and run the USB creation tool by running the commands:</p>
+<p>In addition, you need to have the ISO image of the OS you want to install. You can either use a yet another USB stick that holds this ISO, or download the ISO from the web once booted into Linux (provided you have enough RAM to hold it). It’s also possible to access an ISO file that you downloaded on Windows, but that requires Windows to be properly shut down (i.e. disable hibernation before shutting down) before booting Linux, or else Linux will refuse to open a Windows file system so as not to damage it.</p>
+<p>On a small USB stick (this can be ~4 GiB), create a non-persistent Live USB by following the directions above. Boot into it, connect the large USB stick, open the terminal, and install and run the USB creation tool by running the commands:</p>
 <div class="row">
 <button class="source bash toggle btn btn-xs btn-primary">
 <span class="glyphicon glyphicon-chevron-down"></span> bash source
@@ -972,7 +971,7 @@ sudo -H mkusb /path/to/iso/filename.iso</code></pre>
 sudo apt install git
 git clone https://github.com/GeoScripting-WUR/InstallLinuxScript.git
 cd InstallLinuxScript
-cd bionic       ## In case you're running Ubuntu 18.04
+cd focal        ## In case you're running Ubuntu 20.04
 cd osgeo-bionic ## In case you're running OSGeo Live 13
 bash install.sh</code></pre>
 </div>
