@@ -3,61 +3,92 @@ pagetitle: "Setting up your system for Geo-scripting with R"
 author: "Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  knitrBootstrap::bootstrap_document:
-    theme: "simplex"
-    highlight: Tomorrow Night Bright
-    menu: FALSE
-    theme.chooser: TRUE
-    highlight.chooser: TRUE
+  rmdformats::html_clean:
+    highlight: zenburn
 ---
+
+```{css, echo=FALSE}
+@import url("https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css");
+.main-container {max-width: none;}
+pre {color: inherit; background-color: inherit;}
+code[class^="sourceCode"]::before {
+  content: attr(class);
+  display: block;
+  text-align: right;
+  font-size: 70%;
+}
+code[class^="sourceCode r"]::before { content: "R Source";}
+code[class^="sourceCode python"]::before { content: "Python Source"; }
+code[class^="sourceCode bash"]::before { content: "Bash Source"; }
+```
+
+<font size="6">[WUR Geoscripting](https://geoscripting-wur.github.io/)</font> <img src="https://www.wur.nl/upload/854757ab-168f-46d7-b415-f8b501eebaa5_WUR_RGB_standard_2021-site.svg" alt="WUR logo" style="height: 35px; margin:inherit;"/>
 
 # Introduction
 
-This page details the easiest ways to set up all the necessary software for taking the Geoscripting course. This is useful to know in the following cases:
+This page details the easiest ways to set up all the necessary software for taking the Geoscripting course.
 
-- You are following the course externally
-- You have followed the course in the past and wish to revisit some of the lessons or want to have all the same software on _your own_ computer
-- You'd like to try running Linux on your own device
-
-```{block type="alert alert-success"}
-**Note**: regular students taking the Geoscripting course are *already provided* with an environment with all software preinstalled! This environment will be introduced in lesson 4. Thus this guide is only needed for those who want to set an equivalent environment on their own.
-```
-
-Having your system properly set-up is a cricial step before starting any geo-processing with R and Python. The figure below provides an overview of some of the different components of the system and how they are connected with each other.
+Having your system properly set-up is a crucial step before starting any geo-processing with R and Python. The figure below provides an overview of some of the different components of the system and how they are connected with each other.
 
 <center><img src="../IntroToRaster/figs/geoscripting-system-overview.svg" alt="System component graph" style="width: 700px"/></center>
 
 The easiest way to get it all running is to work via a Linux environment. There, all (or almost all) the tools are already preinstalled for you. However, getting it to run takes a bit of practice. There are a few options:
 
-* Running Linux from a virtual machine inside Windows/macOS - easiest but slowest performance
-* Running Linux off of a USB drive (Live system) - best support and ease-of-setup ratio
-* Installing Linux on a hard drive (external or internal) - best for long-term Linux use
+* Running Linux from a virtual machine inside Windows/macOS - easiest but slowest performance, best if you have a powerful laptop
+* Running Linux off of a USB drive (Live system) - best support and ease-of-setup ratio, but requires a spare USB drive
+* Installing Linux on a hard drive (external or internal) - best for long-term Linux use, but may destroy your data if you are not careful
 
-Either way, one needs to choose a distribution. For the course there are two options: 1) the [OSGeo Live](http://live.osgeo.org/en/index.html) Linux distribution is easy to set up and includes almost everything you need in the course, but it's a different environment from the virtual machines that are provided in the course. 2) [Ubuntu 20.04 Focal Fossa](http://releases.ubuntu.com/20.04/) is more lightweight and does not have any of the tools installed, but can be converted to the exact same environment we use during the course. We have prepared an [install script](https://github.com/GeoScripting-WUR/InstallLinuxScript) that installs all the missing tools for the course for both of these options. **Please don't forget to check the final section of this page about how to use it to install all the needed tools!**
+In this course, we will use the [Ubuntu 22.04 Jammy Jellyfish](http://releases.ubuntu.com/22.04/) Linux distribution. It is perhaps the most popular general-purpose distribution at the moment. General-purpose means that it does not have any of the geoscripting tools installed out of the box. We have prepared an [install script](https://github.com/GeoScripting-WUR/InstallLinuxScript) that installs all the missing tools, and have created a VirtualBox image with all the tools preinstalled for you. Using VirtualBox with the image we provide is the best way of running all the needed software, and it is also the environment in which we will test all the submissions, including the exam.
 
 If you are taking the course externally and want to follow just one or two lessons, you can often successfully install the needed software also on Windows and macOS. However, it is more difficult to set it up and thus we do not provide support for such installations: you are on your own for that.
 
 ```{block type="alert alert-danger"}
-**Warning for students taking the course**: during the course we will **not** support non-standard software stacks, because software setup is a time-consuming, difficult to debug process, and different software versions/platforms often cause unexpected bugs. Thus please **use the provided VDI** introduced in lesson 4, or if that is not available, one of the options described below.
+**Warning for students taking the course**: during the course we will **not** support non-standard software stacks, because software setup is a time-consuming, difficult to debug process, and different software versions/platforms often cause unexpected bugs. Thus please **use the provided VirtualBox image** introduced below, or if that is not possible for your hardware, one of the options described after that.
 ```
 
 # Running Linux
 
-## Linux on a virtual machine
+## Linux on a VirtualBox virtual machine
 
-If you prefer OSGeo Live, follow the [instructions on the OSGeo Live website](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html) to set up VirtualBox and OSGeo Live.
+We will work with a VirtualBox image.
+Note that for this option, you need to have at least 50 GiB (ideally 200 GiB) free space available on your laptop, and for good performance, it should be an SSD drive.
 
-```{block, type="alert alert-info"}
-**Note**: If you get screen corruption upon booting to OSGeo Live, press right Ctrl + F1, then right Ctrl + F7.
-```
+The first step is to [download and install VirtualBox on your computer](https://www.virtualbox.org/).
+Note that you need to [make sure that your computer has virtualisation technology (VT-d and VT-x) support enabled in its firmware](https://helpdeskgeek.com/how-to/how-to-enable-virtualization-in-bios-for-intel-and-amd/).
+Unfortunately, the instructions for doing do depend on the model of your laptop, so you need to find out how to do that on your own.
+If you don't manage, you can go to the [Servicepoint IT](https://www.wur.nl/en/article/laptop-software-service.htm) (see under the heading "Who can help me if I have issues with my laptop?") and ask the staff there to help you set up VirtualBox on your computer.
 
-If you want to use Ubuntu 20.04, follow [this guide](https://linuxhint.com/install_ubuntu_virtualbox_2004/) to set it up manually, or download a premade VirtualBox VDI image of Ubuntu 20.04 64-bit from [OSBoxes](https://www.osboxes.org/ubuntu/#ubuntu-20-04-vbox) and then follow the [OSGeo Live guide](https://live.osgeo.org/en/quickstart/virtualization_quickstart.html) to set it up.
+![](figs/virtualbox-import.png)
 
-For those who wish to set it up on Wageningen PCs, keep in mind that virtualisation needs to be enabled in the PC's UEFI BIOS first.
+Once you have VirtualBox installed and virtualisation enabled, you can import the image that we have prepared for you.
+First, [download the Geoscripting image by following this link](https://filesender.surf.nl/?s=download&token=733b0d2a-6290-49af-90a0-55b34d2adb29).
+Next, click *File → Import Appliance...*, and select the file you just downloaded.
+Click *Next* and in *Machine Base Folder* field, select the directory in which you want the image to be placed (this should be on a drive that has at least 50 GiB space).
+Next, click *Finish* and wait for the import to finish.
+
+![](figs/virtualbox-import-2.png)
+
+Once it is finished, you will see a new virtual machine called Geoscripting in the main window of VirtualBox.
+Click *Machine → Settings...* and make sure there are no errors or warnings that are pointed out at the bottom of the window.
+Next, go to the *System* tab and set the number of cores and the amount of memory you want to give to the virtual machine.
+It should be as much as possible, while leaving enough for your host OS to run.
+The green line is a good indicator, you can set the sliders to the maximum that is still within the green line.
+Do the same in the *Display* tab for the video memory.
+In the *Shared Folders* tab, you can add a folder on your computer that will become available as a directory in the Linux image, so that you can copy files from/to your host OS.
+
+![](figs/virtualbox-settings.png)
+
+Lastly, click *OK* to dismiss the configuration window, and click the big green *Start* arrow.
+If all went well, after some time you will see a login screen.
+The password is the same as the username, that is, `osboxes.org`.
+
+# Alternative options
+
+If you can't get a VirtualBox image running due to hardware limitations, below are two methods of running it from a hard disk directly.
 
 ## Linux on a USB drive
 
-Download the ISO image of either [OSGeo Live](https://live.osgeo.org/en/download.html) or [Ubuntu 20.04](http://releases.ubuntu.com/20.04/), and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. [Rufus](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows) on Windows.
+Download the ISO image of [Ubuntu 22.04](http://releases.ubuntu.com/22.04/), and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. [Rufus](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows) on Windows.
 
 This will create a *non-persistent* Live USB. That means that any changes you do will be lost on reboot. If you want to keep your changes, you have two options: 1) Write a persistent Live USB *from within Linux*, or 2) *install* Linux on external/internal hard drive.
 
@@ -87,7 +118,7 @@ Reboot, take out the small USB stick, boot from the large one, and you should be
 
 ## Linux on a hard drive
 
-The methods descrived above make a *Live system*, that is, the contents of the USB drive are mostly stored in memory, which is fast but limits the amount of memory you can use for data processing. You can also *install* Linux, to make it a regular operating system. It can be installed on an internal hard drive, or even an *external* hard drive or a large, fast USB stick. In case of an external drive, you get a portable system that you can boot from any PC, but it may be slower than when using a persistent Live USB. If installed on an internal hard drive, it can live alongside another OS like Windows in a *dual boot* setup.
+The methods described above make a *Live system*, that is, the contents of the USB drive are mostly stored in memory, which is fast but limits the amount of memory you can use for data processing. You can also *install* Linux, to make it a regular operating system. It can be installed on an internal hard drive, or even an *external* hard drive or a large, fast USB stick. In case of an external drive, you get a portable system that you can boot from any PC, but it may be slower than when using a persistent Live USB. If installed on an internal hard drive, it can live alongside another OS like Windows in a *dual boot* setup.
 
 To install Linux onto a hard drive, boot from a Live USB (as detailed above) and double-click on the "Install" icon on the desktop, and follow the setup wizard.
 
