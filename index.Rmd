@@ -1,7 +1,7 @@
 ---
 pagetitle: "Setting up your system for Geo-scripting with R"
 author: "Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
 output:
   rmdformats::html_clean:
     highlight: zenburn
@@ -81,10 +81,12 @@ In the *Shared Folders* tab, you can add a folder on your computer that will bec
 Lastly, click *OK* to dismiss the configuration window, and click the big green *Start* arrow.
 If all went well, after some time you will see a login screen.
 The password is the same as the username, that is, `osboxes.org`.
+This is also the administrator password.
 
 # Alternative options
 
 If you can't get a VirtualBox image running due to hardware limitations, below are two methods of running it from a hard disk directly.
+Note that you can also request a fallback virtual machine on the cloud (SURF Research Cloud or VMWare Horizon); consult the staff for guidance on what is the best option in your case.
 
 ## Linux on a USB drive
 
