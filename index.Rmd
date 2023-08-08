@@ -36,7 +36,7 @@ The easiest way to get it all running is to work via a Linux environment. There,
 
 * Running Linux from a virtual machine inside Windows/macOS - easiest but slowest performance, best if you have a powerful laptop
 * Running Linux off of a USB drive (Live system) - best support and ease-of-setup ratio, but requires a spare USB drive
-* Installing Linux on a hard drive (external or internal) - best for long-term Linux use, but may destroy your data if you are not careful
+* Installing Linux on a hard drive (external or internal) - best for long-term Linux use, but the installer may wipe your data if you are not careful
 
 In this course, we will use the [Ubuntu 22.04 Jammy Jellyfish](http://releases.ubuntu.com/22.04/) Linux distribution. It is perhaps the most popular general-purpose distribution at the moment. General-purpose means that it does not have any of the geoscripting tools installed out of the box. We have prepared an [install script](https://github.com/GeoScripting-WUR/InstallLinuxScript) that installs all the missing tools, and have created a VirtualBox image with all the tools preinstalled for you. Using VirtualBox with the image we provide is the best way of running all the needed software, and it is also the environment in which we will test all the submissions, including the exam.
 
@@ -63,8 +63,10 @@ If you don't manage, you can go to the [Servicepoint IT](https://www.wur.nl/en/a
 Once you have VirtualBox installed and virtualisation enabled, you can import the image that we have prepared for you.
 First, [download the Geoscripting image by following this link](https://filesender.surf.nl/?s=download&token=733b0d2a-6290-49af-90a0-55b34d2adb29).
 Next, click *File → Import Appliance...*, and select the file you just downloaded.
-Click *Next* and in *Machine Base Folder* field, select the directory in which you want the image to be placed (this should be on a drive that has at least 50 GiB space).
+Click *Next* and in *Machine Base Folder* field, select the directory in which you want the image to be placed (**this should be on a drive that has at least 50 GiB space**).
 Next, click *Finish* and wait for the import to finish.
+If you get an error `E_INVALIDARG`, most likely you did not set the machine base folder to a place that has sufficient space.
+Other reasons could include a corrupted download, in which case, you need to download the image file again.
 
 ![](figs/virtualbox-import-2.png)
 
@@ -83,9 +85,13 @@ If all went well, after some time you will see a login screen.
 The password is the same as the username, that is, `osboxes.org`.
 This is also the administrator password.
 
+If you got this far, good job, you are now running Linux!
+We will use this environment throughout the course, so explore it and get familiar with it.
+You can now go back to the tutorial you were reading, you are finished with your system setup.
+
 # Alternative options
 
-If you can't get a VirtualBox image running due to hardware limitations, below are two methods of running it from a hard disk directly.
+If you couldn't get a VirtualBox image running due to hardware limitations, below are two methods of running it from a hard disk directly.
 Note that you can also request a fallback virtual machine on the cloud (SURF Research Cloud or VMWare Horizon); consult the staff for guidance on what is the best option in your case.
 
 ## Linux on a USB drive
@@ -134,14 +140,13 @@ To install Linux onto a hard drive, boot from a Live USB (as detailed above) and
 
 ## Installing necessary software
 
-Now that you are running Linux, you should run the install script that fetches all the needed software for you. For that, open the terminal and run the following commands:
+Now that you are running Ubuntu, you should run the install script that fetches all the needed Geoscripting software for you. For that, open the terminal and run the following commands:
 
 ```{bash, eval=FALSE}
 sudo apt update
 sudo apt install git
 git clone https://github.com/GeoScripting-WUR/InstallLinuxScript.git
 cd InstallLinuxScript
-cd focal        ## In case you're running Ubuntu 20.04
-cd osgeo-bionic ## In case you're running OSGeo Live 13
+cd jammy # For Ubuntu 22.04
 bash install.sh
 ```
