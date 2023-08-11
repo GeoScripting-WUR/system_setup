@@ -61,7 +61,7 @@ If you don't manage, you can go to the [Servicepoint IT](https://www.wur.nl/en/a
 ![](figs/virtualbox-import.png)
 
 Once you have VirtualBox installed and virtualisation enabled, you can import the image that we have prepared for you.
-First, [download the Geoscripting image by following this link](https://filesender.surf.nl/?s=download&token=733b0d2a-6290-49af-90a0-55b34d2adb29).
+First, [download the Geoscripting image by following this link](https://wageningenur4-my.sharepoint.com/:u:/g/personal/dainius_masiliunas_wur_nl/EXdIf5O4GyxMtFfqD4PNaWgBeec-R1FLheuKKAcOZBiNjA?e=p4IZ25).
 Next, click *File → Import Appliance...*, and select the file you just downloaded.
 Click *Next* and in *Machine Base Folder* field, select the directory in which you want the image to be placed (**this should be on a drive that has at least 50 GiB space**).
 Next, click *Finish* and wait for the import to finish.
