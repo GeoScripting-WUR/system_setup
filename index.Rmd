@@ -87,6 +87,8 @@ This is also the administrator password.
 
 If you got this far, good job, you are now running Linux!
 We will use this environment throughout the course, so explore it and get familiar with it.
+When it comes time to shut down your environment go to the top right and click *power off*, don't use the *X* button.
+![](figs/virtualbox-poweroff.png)
 You can now go back to the tutorial you were reading, you are finished with your system setup.
 
 # Alternative options
