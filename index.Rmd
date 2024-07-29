@@ -38,9 +38,9 @@ The easiest way to get it all running is to work via a Linux environment. There,
 * Running Linux off of a USB drive (Live system) - best support and ease-of-setup ratio, but requires a spare USB drive
 * Installing Linux on a hard drive (external or internal) - best for long-term Linux use, but the installer may wipe your data if you are not careful
 
-In this course, we will use the [Ubuntu 22.04 Jammy Jellyfish](http://releases.ubuntu.com/22.04/) Linux distribution. It is perhaps the most popular general-purpose distribution at the moment. General-purpose means that it does not have any of the geoscripting tools installed out of the box. We have prepared an [install script](https://github.com/GeoScripting-WUR/InstallLinuxScript) that installs all the missing tools, and have created a VirtualBox image with all the tools preinstalled for you. Using VirtualBox with the image we provide is the best way of running all the needed software, and it is also the environment in which we will test all the submissions, including the exam.
+In this course, we will use the [Ubuntu 24.04 Noble Numbat](http://releases.ubuntu.com/24.04/) Linux distribution. It is perhaps the most popular general-purpose distribution at the moment. General-purpose means that it does not have any of the geoscripting tools installed out of the box. We have prepared an [install script](https://github.com/GeoScripting-WUR/InstallLinuxScript) that installs all the missing tools, and have created a VirtualBox image with all the tools preinstalled for you. Using VirtualBox with the image we provide is the best way of running all the needed software, and it is also the environment in which we will test all the submissions, including the exam.
 
-If you are taking the course externally and want to follow just one or two lessons, you can often successfully install the needed software also on Windows and macOS. However, it is more difficult to set it up and thus we do not provide support for such installations: you are on your own for that.
+If you are taking the course externally and want to follow just one or two lessons, you can often successfully install the needed software also on Windows and macOS. However, it is more difficult to set it up and thus we do not provide support for such installations: you are on your own for that. The VirtualBox images are public and anyone can use it, whether following the course or not!
 
 ```{block type="alert alert-danger"}
 **Warning for students taking the course**: during the course we will **not** support non-standard software stacks, because software setup is a time-consuming, difficult to debug process, and different software versions/platforms often cause unexpected bugs. Thus please **use the provided VirtualBox image** introduced below, or if that is not possible for your hardware, one of the options described after that.
@@ -51,7 +51,7 @@ If you are taking the course externally and want to follow just one or two lesso
 ## Linux on a VirtualBox virtual machine
 
 We will work with a VirtualBox image.
-Note that for this option, you need to have at least 50 GiB (ideally 200 GiB) free space available on your laptop, and for good performance, it should be an SSD drive.
+Note that for this option, you need to have at least 50 GiB (ideally 200-500 GiB) free space available on your laptop, and for good performance, it should be an SSD drive.
 
 The first step is to [download and install VirtualBox on your computer](https://www.virtualbox.org/).
 Note that you need to [make sure that your computer has virtualisation technology (VT-d and VT-x) support enabled in its firmware](https://helpdeskgeek.com/how-to/how-to-enable-virtualization-in-bios-for-intel-and-amd/).
@@ -61,7 +61,7 @@ If you don't manage, you can go to the [Servicepoint IT](https://www.wur.nl/en/a
 ![](figs/virtualbox-import.png)
 
 Once you have VirtualBox installed and virtualisation enabled, you can import the image that we have prepared for you.
-First, [download the Geoscripting image by following this link](https://wageningenur4-my.sharepoint.com/:u:/g/personal/dainius_masiliunas_wur_nl/EXdIf5O4GyxMtFfqD4PNaWgBeec-R1FLheuKKAcOZBiNjA?e=p4IZ25).
+First, [download the Geoscripting image by following this link](https://wageningenur4-my.sharepoint.com/:u:/g/personal/dainius_masiliunas_wur_nl/EUnuNnIfUlxJtjm9N-qFV6cB8fc64d7iC3PT2QulfN_wFA?e=vLk3hA&isSPOFile=1).
 Next, click *File → Import Appliance...*, and select the file you just downloaded.
 Click *Next* and in *Machine Base Folder* field, select the directory in which you want the image to be placed (**this should be on a drive that has at least 50 GiB space**).
 Next, click *Finish* and wait for the import to finish.
@@ -82,27 +82,45 @@ In the *Shared Folders* tab, you can add a folder on your computer that will bec
 
 Lastly, click *OK* to dismiss the configuration window, and click the big green *Start* arrow.
 If all went well, after some time you will see a login screen.
-The password is the same as the username, that is, `osboxes.org`.
-This is also the administrator password.
+The password is the same as the displayed username, that is, `osboxes.org`.
+This is also the administrator password. (Note: the actual username is just `osboxes`, as usernames in Linux cannot contain special characters.)
 
 If you got this far, good job, you are now running Linux!
-We will use this environment throughout the course, so explore it and get familiar with it.
-When it comes time to shut down your environment go to the top right and click *power off*, don't use the *X* button.
+We will use this environment throughout the course, so explore it and get familiar with it. You can press the Ubuntu logo 9circle with three dots) at the bottom left to see all the software isntalled on the image.
+
+When it comes time to shut down your environment, click the power button at top right, then again click the power button, and click *power off*, don't use the *X* button.
 
 
-![](figs/virtualbox-poweroff.png)
+![](figs/virtualbox-poweroff.PNG)
 
+## Configuration and VirtualBox Guest Additions
 
-You can now go back to the tutorial you were reading, you are finished with your system setup.
+Depending on your hardware and software, you might need to tweak your VirtualBox setup a little. Firstly, check if your keyboard input and screen settings are working properly.
+
+If you have a non-US/UK keyboard, you will need to change your keyboard settings so that you can type comfortably. To do that, click on the "Show Apps" button on the lower left and type "Settings". In the Settings app, find the keyboard tab on the left, click on "Add Input Source...", click on the three dots, then click on "More" and search for your keyboard language. Once you add it, you can drag and drop languages to reorder them (the top one will be the default when the virtual machine starts).
+
+Next, check if the VirtualBox window resizes properly when you change its size. It should fill the entire area of the window, without adding an empty border or scrollbars. In most cases, it should work automatically. But sometimes, the VirtualBox version that you have on your host machine is different from the VirtualBox Guest Additions installed on the VirtualBox image. Then you need to install the correct version to get the right drivers for resizing the screen.
+
+To install VirtualBox Guest Additions, while you are running the virtual machine, click on the "Devices" menu at the very top, then select "Insert Guest Additions CD Image...". This option will ask whether you want to download the VirtualBox Guest Additions ISO file. Agree and wait for it to finish, afterwards the image should get inserted and you should see a CD icon on the left side of the screen. Clicking on it, you should see the file manager with a message "Contains software to run". Click on the "Run Software" button to start the setup.
+
+Most of the times the setup will not be successful because of the old version of VirtualBox Guest Additions already installed on the VirtualBox image. To remove it, go to "Show apps" at the lower left corner, and run the "Terminal" app. Next, run the following command in the terminal:
+
+```bash
+sudo apt remove --purge virtualbox-guest-utils virtualbox-guest-x11
+```
+
+It will ask for your user's password, which is `osboxes.org`. You will not see the password when you type it (it's a security feature, but it remembers what you typed). After that, type `Y` to confirm removal of the old Guest Additions. Now that it's finished, you can go back to the CD image directory and again click on "Run Software". This time, it should install succesfully. After that, restart the Virtual Machine, and your screen should resize successfully!
+
+You can now go back to the tutorial you were reading, you are finished with your system setup. Below are some suggestions in case you can't run VirtualBox successfully or if you are an advanced (power) user.
 
 # Alternative options
 
 If you couldn't get a VirtualBox image running due to hardware limitations, below are two methods of running it from a hard disk directly.
-Note that you can also request a fallback virtual machine on the cloud (SURF Research Cloud or VMWare Horizon); consult the staff for guidance on what is the best option in your case.
+Note that you can also request a fallback virtual machine on the cloud (SURF Research Cloud); consult the staff for guidance on what is the best option in your case.
 
 ## Linux on a USB drive
 
-Download the ISO image of [Ubuntu 22.04](http://releases.ubuntu.com/22.04/), and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. [Rufus](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows) on Windows.
+Download the ISO image of [Ubuntu 24.04](http://releases.ubuntu.com/24.04/), and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. [Rufus](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows) on Windows.
 
 This will create a *non-persistent* Live USB. That means that any changes you do will be lost on reboot. If you want to keep your changes, you have two options: 1) Write a persistent Live USB *from within Linux*, or 2) *install* Linux on external/internal hard drive.
 
@@ -110,9 +128,9 @@ This will create a *non-persistent* Live USB. That means that any changes you do
 
 To make a persistent Live USB, you need to: 1) have a large enough USB drive (8 GiB minimum, 16 GiB recommended), 2) be booted into Linux. This is a bit of a chicken-and-egg problem (only Linux can read and write Linux file systems, and a Linux file system is required to create a persistence file larger than 4 GiB). This point can be solved by either using an existing Linux PC, or by using two USB sticks. An example of the latter follows.
 
-In addition, you need to have the ISO image of the OS you want to install. You can either use a yet another USB stick that holds this ISO, or download the ISO from the web once booted into Linux (provided you have enough RAM to hold it). It's also possible to access an ISO file that you downloaded on Windows, but that requires Windows to be properly shut down (i.e. disable hibernation before shutting down) before booting Linux, or else Linux will refuse to open a Windows file system so as not to damage it.
+In addition, you need to have the ISO image of the OS you want to install. You can either use a yet another USB stick that holds this ISO, or download the ISO from the web once booted into Linux (provided you have enough RAM to hold it). It's also possible to directly access an ISO file that you downloaded on a Windows (C:) drive, but that requires Windows to be properly shut down (i.e. disable hibernation before shutting down) before booting Linux, or else Linux will refuse to open a Windows file system so as not to damage it.
 
-On a small USB stick (this can be ~4 GiB), create a non-persistent Live USB by following the directions above. Boot into it, connect the large USB stick, open the terminal, and install and run the USB creation tool by running the commands:
+On a small USB stick (this can be ~8 GiB), create a non-persistent Live USB by following the directions above. Boot into it, connect the large USB stick, open the terminal, and install and run the USB creation tool by running the commands:
 
 ```{bash, eval=FALSE}
 sudo add-apt-repository universe
@@ -132,7 +150,7 @@ Reboot, take out the small USB stick, boot from the large one, and you should be
 
 ## Linux on a hard drive
 
-The methods described above make a *Live system*, that is, the contents of the USB drive are mostly stored in memory, which is fast but limits the amount of memory you can use for data processing. You can also *install* Linux, to make it a regular operating system. It can be installed on an internal hard drive, or even an *external* hard drive or a large, fast USB stick. In case of an external drive, you get a portable system that you can boot from any PC, but it may be slower than when using a persistent Live USB. If installed on an internal hard drive, it can live alongside another OS like Windows in a *dual boot* setup.
+The methods described above make a *Live system*, that is, the contents of the USB drive are mostly stored in memory, which is fast but limits the amount of memory you can use for data processing. Its speed is also limited by the speed of the USB drive. You can also *install* Linux, to make it a regular operating system. It can be installed on an internal hard drive, or even an *external* hard drive or a large, fast USB stick. In case of an external drive, you get a portable system that you can boot from any PC, but it may be slower than when using a persistent Live USB, as its contents will not be loaded into memory. If installed on an internal hard drive, it can live alongside another OS like Windows in a *dual boot* setup.
 
 To install Linux onto a hard drive, boot from a Live USB (as detailed above) and double-click on the "Install" icon on the desktop, and follow the setup wizard.
 
@@ -146,13 +164,15 @@ To install Linux onto a hard drive, boot from a Live USB (as detailed above) and
 
 ## Installing necessary software
 
-Now that you are running Ubuntu, you should run the install script that fetches all the needed Geoscripting software for you. For that, open the terminal and run the following commands:
+If you have installed Ubuntu on your disk or a live USB, you won't yet have all hte software that is otherwise preloaded on the VirtualBox image above. To obtain it, you should run the install script that fetches all the needed Geoscripting software for you. For that, open the terminal and run the following commands:
 
 ```{bash, eval=FALSE}
 sudo apt update
 sudo apt install git
 git clone https://github.com/GeoScripting-WUR/InstallLinuxScript.git
 cd InstallLinuxScript
-cd jammy # For Ubuntu 22.04
+cd noble # For Ubuntu 24.04
 bash install.sh
 ```
+
+This is not needed if you use the VirtualBox image above, as this step has already been done for you.
