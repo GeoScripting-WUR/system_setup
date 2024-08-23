@@ -61,7 +61,7 @@ If you don't manage, you can go to the [Servicepoint IT](https://www.wur.nl/en/a
 ![](figs/virtualbox-import.png)
 
 Once you have VirtualBox installed and virtualisation enabled, you can import the image that we have prepared for you.
-First, [download the Geoscripting image by following this link](https://wageningenur4-my.sharepoint.com/:u:/g/personal/dainius_masiliunas_wur_nl/EUnuNnIfUlxJtjm9N-qFV6cB8fc64d7iC3PT2QulfN_wFA?e=vLk3hA&isSPOFile=1).
+First, [download the Geoscripting image by following this link](https://wageningenur4-my.sharepoint.com/:u:/g/personal/dainius_masiliunas_wur_nl/EYKXLK-YkzpFki_FwW6znP8B5HhW9EuNvwK_CrNEfCV5kg?isSPOFile=1).
 Next, click *File → Import Appliance...*, and select the file you just downloaded.
 Click *Next* and in *Machine Base Folder* field, select the directory in which you want the image to be placed (**this should be on a drive that has at least 50 GiB space**).
 Next, click *Finish* and wait for the import to finish.
@@ -73,8 +73,9 @@ Other reasons could include a corrupted download, in which case, you need to dow
 Once it is finished, you will see a new virtual machine called Geoscripting in the main window of VirtualBox.
 Click *Machine → Settings...* and make sure there are no errors or warnings that are pointed out at the bottom of the window.
 Next, go to the *System* tab and set the number of cores and the amount of memory you want to give to the virtual machine.
-It should be as much as possible, while leaving enough for your host OS to run.
-The green line is a good indicator, you can set the sliders to the maximum that is still within the green line.
+The number of cores should stay low, one or two is enough for getting started.
+The memory should be as much as possible, while leaving enough for your host OS to run.
+The green line is a good indicator, you can set the slider to the maximum that is still within the green line.
 Do the same in the *Display* tab for the video memory.
 In the *Shared Folders* tab, you can add a folder on your computer that will become available as a directory in the Linux image, so that you can copy files from/to your host OS.
 
@@ -109,7 +110,7 @@ Most of the times the setup will not be successful because of the old version of
 sudo apt remove --purge virtualbox-guest-utils virtualbox-guest-x11
 ```
 
-It will ask for your user's password, which is `osboxes.org`. You will not see the password when you type it (it's a security feature, but it remembers what you typed). After that, type `Y` to confirm removal of the old Guest Additions. Now that it's finished, you can go back to the CD image directory and again click on "Run Software". This time, it should install succesfully. After that, restart the Virtual Machine, and your screen should resize successfully!
+It will ask for your user's password, which is `osboxes.org`. You will not see the password when you type it (it's a security feature, but it remembers what you typed). After that, type `Y` to confirm removal of the old Guest Additions. Now that it's finished, you can go back to the CD image directory and again click on "Run Software". This time, it should install successfully. After that, restart the Virtual Machine, and your screen should resize successfully!
 
 You can now go back to the tutorial you were reading, you are finished with your system setup. Below are some suggestions in case you can't run VirtualBox successfully or if you are an advanced (power) user.
 
