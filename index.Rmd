@@ -135,7 +135,7 @@ In the *Hard Disk* tab, **make sure to give your virtual machine at least 50 GB 
 This is the maximum the disk space can grow to, but it will not take as much space, at least initially.
 Start the virtual machine, go through the installation wizard.
 You navigate with arrow keys, Tab and Enter.
-You can accept all defaults.
+You can accept all defaults, except that you should **disable LVM** when prompted, as that would only let you use half of your allocated disk space.
 When the installation is finished, press *Reboot Now*.
 When prompted to remove the installation medium, press Enter.
 
@@ -144,6 +144,7 @@ After it reboots, press Enter, log in and install the package `ubuntu-desktop` b
 ```{bash, eval=FALSE}
 sudo apt update
 sudo apt install ubuntu-desktop
+sudo systemctl disable systemd-networkd-wait-online
 ```
 
 Finally, reboot using the command `systemctl reboot` and continue with installing the Geoscripting software by following the [last section of this page](#installing-necessary-software).

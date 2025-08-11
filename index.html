@@ -1137,12 +1137,15 @@ space</strong>, ideally set it to 200-500 GB. This is the maximum the
 disk space can grow to, but it will not take as much space, at least
 initially. Start the virtual machine, go through the installation
 wizard. You navigate with arrow keys, Tab and Enter. You can accept all
-defaults. When the installation is finished, press <em>Reboot Now</em>.
+defaults, except that you should <strong>disable LVM</strong> when
+prompted, as that would only let you use half of your allocated disk
+space. When the installation is finished, press <em>Reboot Now</em>.
 When prompted to remove the installation medium, press Enter.</p>
 <p>After it reboots, press Enter, log in and install the package
 <code>ubuntu-desktop</code> by entering the following code:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">sudo</span> apt install ubuntu-desktop</span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">sudo</span> apt install ubuntu-desktop</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">sudo</span> systemctl disable systemd-networkd-wait-online</span></code></pre></div>
 <p>Finally, reboot using the command <code>systemctl reboot</code> and
 continue with installing the Geoscripting software by following the <a href="#installing-necessary-software">last section of this page</a>.
 Ignore any errors that appear (some packages are not available on ARM,
