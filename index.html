@@ -5,11 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="pandoc" />
 
-        <meta name="author" content="Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt" />
+        <meta name="author" content="Dainius Masiliunas, Loïc Dutrieux, Jan Verbesselt" />
     
-        <meta name="date" content="2025-07-23" />
+        <meta name="date" content="2025-08-11" />
     
-    <title>Setting up your system for Geo-scripting with R</title>
+    <title>Setting up your system for Geoscripting with R</title>
 
         <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -752,8 +752,9 @@ font-weight: bold;
     
         <style type="text/css">code{white-space: pre;}</style>
     <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -764,7 +765,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -903,9 +904,9 @@ margin-left: 0 !important;
         
 
       <!-- html_clean authors -->
-         <h4 class="author"><em>Loïc Dutrieux, Dainius Masiliunas, Jan
+         <h4 class="author"><em>Dainius Masiliunas, Loïc Dutrieux, Jan
 Verbesselt</em></h4>
-            <h4 class="date"><em>2025-07-23</em></h4>
+            <h4 class="date"><em>2025-08-11</em></h4>
       
       
    
@@ -1108,10 +1109,45 @@ user.</p>
 <div id="alternative-options" class="section level1">
 <h1>Alternative options</h1>
 <p>If you couldn’t get a VirtualBox image running due to hardware
-limitations, below are two methods of running it from a hard disk
-directly. Note that you can also request a fallback virtual machine on
-the cloud (SURF Research Cloud); consult the staff for guidance on what
-is the best option in your case.</p>
+limitations, below are several alternative methods of getting Ubuntu
+with Geoscripting software working. In all cases, please see the last
+section on how to install the needed software.
+<!-- Note that you can also request a fallback virtual machine on the cloud (SURF Research Cloud); consult the staff for guidance on what is the best option in your case. --></p>
+<div id="for-non-intel-macos-and-other-arm-users" class="section level2">
+<h2>For non-Intel macOS and other ARM users</h2>
+<p>The VirtualBox OVA image above is made for Intel architectures. Other
+architectures, like ARM that is used on some newer macOS devices, are
+not supported. Please purchase a device that can run Intel architecture
+software, as you will continue to run into these issues in future
+courses as well.</p>
+<p>If you have no other choice (e.g. you don’t have enough time to buy a
+new laptop), a workaround for this course only is to install an ARM
+version of VirtualBox and install the ARM version of Ubuntu into it.
+Unfortunately there is no desktop version of Ubuntu 24.04 for ARM, but
+there is a server version, which will also work. Download the <a href="https://ubuntu.com/download/server/arm">Ubuntu 24.04 ARM ISO from
+here</a>.
+<!--In VirtualBox, you can try to automatically set it up by pressing *New*, giving it a name, putting the ISO image you just downloaded into the *ISO Image* box, selecting the 24.04 version in the "Version" box, and filling in the information in the "Unattended Install" section.
+This will install everything on first launch.
+If that doesn't work, try to add it again, --> Press <em>New</em>, give
+it a name, put the ISO image you just downloaded into the <em>ISO
+Image</em> box, select the 24.04 version in the “Version” box, and check
+the box “skip unattended install”. In the <em>Hard Disk</em> tab,
+<strong>make sure to give your virtual machine at least 50 GB
+space</strong>, ideally set it to 200-500 GB. This is the maximum the
+disk space can grow to, but it will not take as much space, at least
+initially. Start the virtual machine, go through the installation
+wizard. You navigate with arrow keys, Tab and Enter. You can accept all
+defaults. When the installation is finished, press <em>Reboot Now</em>.
+When prompted to remove the installation medium, press Enter.</p>
+<p>After it reboots, press Enter, log in and install the package
+<code>ubuntu-desktop</code> by entering the following code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">sudo</span> apt install ubuntu-desktop</span></code></pre></div>
+<p>Finally, reboot using the command <code>systemctl reboot</code> and
+continue with installing the Geoscripting software by following the <a href="#installing-necessary-software">last section of this page</a>.
+Ignore any errors that appear (some packages are not available on ARM,
+but they are not critical).</p>
+</div>
 <div id="linux-on-a-usb-drive" class="section level2">
 <h2>Linux on a USB drive</h2>
 <p>Download the ISO image of <a href="http://releases.ubuntu.com/24.04/">Ubuntu 24.04</a>, and write it
@@ -1144,11 +1180,11 @@ Windows file system so as not to damage it.</p>
 Live USB by following the directions above. Boot into it, connect the
 large USB stick, open the terminal, and install and run the USB creation
 tool by running the commands:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository universe</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository ppa:mkusb/ppa</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">sudo</span> apt install mkusb usb-pack-efi</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-H</span> mkusb /path/to/iso/filename.iso</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository universe</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository ppa:mkusb/ppa</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">sudo</span> apt install mkusb usb-pack-efi</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">sudo</span> <span class="at">-H</span> mkusb /path/to/iso/filename.iso</span></code></pre></div>
 <p>When the <code>mkusb</code> program is launched, choose
 <code>d</code> (dus option). Then option <code>p</code> “Persistent
 live”, <code>upefi</code>, select the target device, choose the amount
@@ -1200,16 +1236,16 @@ hardware</a> page for more details.
 <div id="installing-necessary-software" class="section level2">
 <h2>Installing necessary software</h2>
 <p>If you have installed Ubuntu on your disk or a live USB, you won’t
-yet have all hte software that is otherwise preloaded on the VirtualBox
+yet have all the software that is otherwise preloaded on the VirtualBox
 image above. To obtain it, you should run the install script that
 fetches all the needed Geoscripting software for you. For that, open the
 terminal and run the following commands:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">sudo</span> apt install git</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/GeoScripting-WUR/InstallLinuxScript.git</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="bu">cd</span> InstallLinuxScript</span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="bu">cd</span> noble <span class="co"># For Ubuntu 24.04</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="fu">bash</span> install.sh</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">sudo</span> apt install git</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/GeoScripting-WUR/InstallLinuxScript.git</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="bu">cd</span> InstallLinuxScript</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="bu">cd</span> noble <span class="co"># For Ubuntu 24.04</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="fu">bash</span> install.sh</span></code></pre></div>
 <p>This is not needed if you use the VirtualBox image above, as this
 step has already been done for you.</p>
 </div>
@@ -1234,6 +1270,8 @@ step has already been done for you.</p>
        </ul></li>
        <li><a href="#alternative-options" id="toc-alternative-options">Alternative options</a>
        <ul>
+       <li><a href="#for-non-intel-macos-and-other-arm-users" id="toc-for-non-intel-macos-and-other-arm-users">For non-Intel
+       macOS and other ARM users</a></li>
        <li><a href="#linux-on-a-usb-drive" id="toc-linux-on-a-usb-drive">Linux on a USB drive</a></li>
        <li><a href="#linux-on-a-hard-drive" id="toc-linux-on-a-hard-drive">Linux on a hard drive</a></li>
        <li><a href="#installing-necessary-software" id="toc-installing-necessary-software">Installing necessary

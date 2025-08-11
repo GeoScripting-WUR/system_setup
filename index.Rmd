@@ -1,6 +1,6 @@
 ---
-pagetitle: "Setting up your system for Geo-scripting with R"
-author: "Loïc Dutrieux, Dainius Masiliunas, Jan Verbesselt"
+pagetitle: "Setting up your system for Geoscripting with R"
+author: "Dainius Masiliunas, Loïc Dutrieux, Jan Verbesselt"
 date: "`r format(Sys.time(), '%Y-%m-%d')`"
 output:
   rmdformats::html_clean:
@@ -116,30 +116,37 @@ You can now go back to the tutorial you were reading, you are finished with your
 
 # Alternative options
 
-If you couldn't get a VirtualBox image running due to hardware limitations, below are two methods of running it from a hard disk directly.
+If you couldn't get a VirtualBox image running due to hardware limitations, below are several alternative methods of getting Ubuntu with Geoscripting software working. In all cases, please see the last section on how to install the needed software.
 <!-- Note that you can also request a fallback virtual machine on the cloud (SURF Research Cloud); consult the staff for guidance on what is the best option in your case. -->
 
 ## For non-Intel macOS and other ARM users
 
-The VirtualBox ISO image above is made for Intel architectures. Other architectures, like ARM that is used on some newer macOS devices, are not supported.
+The VirtualBox OVA image above is made for Intel architectures. Other architectures, like ARM that is used on some newer macOS devices, are not supported.
 Please purchase a device that can run Intel architecture software, as you will continue to run into these issues in future courses as well.
 
 If you have no other choice (e.g. you don't have enough time to buy a new laptop), a workaround for this course only is to install an ARM version of VirtualBox and install the ARM version of Ubuntu into it.
 Unfortunately there is no desktop version of Ubuntu 24.04 for ARM, but there is a server version, which will also work.
 Download the [Ubuntu 24.04 ARM ISO from here](https://ubuntu.com/download/server/arm).
-In VirtualBox, you can try to automatically set it up by pressing *New*, giving it a name, putting the ISO image you just downloaded into the *ISO Image* box, selecting the 24.04 version in the "Version" box, and filling in the information in the "Unattended Install" section.
+<!--In VirtualBox, you can try to automatically set it up by pressing *New*, giving it a name, putting the ISO image you just downloaded into the *ISO Image* box, selecting the 24.04 version in the "Version" box, and filling in the information in the "Unattended Install" section.
 This will install everything on first launch.
-If that doesn't work, try to add it again, check the box "skip unattended install" and follow the instructions for [manually installing Ubuntu on VirtualBox](https://itslinuxguide.com/install-ubuntu-virtualbox/).
-Eiter way, **make sure to give your virtual machine at least 50 GB space**.
+If that doesn't work, try to add it again, -->
+Press *New*, give it a name, put the ISO image you just downloaded into the *ISO Image* box, select the 24.04 version in the "Version" box, and check the box "skip unattended install".
+In the *Hard Disk* tab, **make sure to give your virtual machine at least 50 GB space**, ideally set it to 200-500 GB.
+This is the maximum the disk space can grow to, but it will not take as much space, at least initially.
+Start the virtual machine, go through the installation wizard.
+You navigate with arrow keys, Tab and Enter.
+You can accept all defaults.
+When the installation is finished, press *Reboot Now*.
+When prompted to remove the installation medium, press Enter.
 
-When the installation is finished, log in and install the package `ubuntu-desktop` using the following code:
+After it reboots, press Enter, log in and install the package `ubuntu-desktop` by entering the following code:
 
 ```{bash, eval=FALSE}
 sudo apt update
 sudo apt install ubuntu-desktop
 ```
 
-Finally, continue with installing the Geoscripting software by following the [last section of this page](#installing-necessary-software).
+Finally, reboot using the command `systemctl reboot` and continue with installing the Geoscripting software by following the [last section of this page](#installing-necessary-software).
 Ignore any errors that appear (some packages are not available on ARM, but they are not critical).
 
 ## Linux on a USB drive
