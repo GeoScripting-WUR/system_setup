@@ -22,7 +22,7 @@ code[class^="sourceCode python"]::before { content: "Python Source"; }
 code[class^="sourceCode bash"]::before { content: "Bash Source"; }
 ```
 
-<font size="6">[WUR Geoscripting](https://geoscripting-wur.github.io/)</font> <img src="https://www.wur.nl/upload/854757ab-168f-46d7-b415-f8b501eebaa5_WUR_RGB_standard_2021-site.svg" alt="WUR logo" style="height: 35px; margin:inherit;"/>
+<font size="6">[WUR Geoscripting](https://geoscripting-wur.github.io/)</font> <img src="https://geoscripting-wur.github.io/figs/WUR_RGB_standard_2025.svg" alt="WUR logo" style="height: 50px;"/>
 
 # Introduction
 
@@ -38,7 +38,7 @@ The easiest way to get it all running is to work via a Linux environment. There,
 * Running Linux off of a USB drive (Live system) - best support and ease-of-setup ratio, but requires a spare USB drive
 * Installing Linux on a hard drive (external or internal) - best for long-term Linux use, but the installer may wipe your data if you are not careful
 
-In this course, we will use the [Ubuntu 24.04 Noble Numbat](http://releases.ubuntu.com/24.04/) Linux distribution. It is perhaps the most popular general-purpose distribution at the moment. General-purpose means that it does not have any of the geoscripting tools installed out of the box. We have prepared an [install script](https://github.com/GeoScripting-WUR/InstallLinuxScript) that installs all the missing tools, and have created a VirtualBox image with all the tools preinstalled for you. Using VirtualBox with the image we provide is the best way of running all the needed software, and it is also the environment in which we will test all the submissions, including the exam.
+In this course, we will use the [Ubuntu 26.04 Resolute Raccoon](http://releases.ubuntu.com/26.04/) Linux distribution. It is perhaps the most popular general-purpose distribution at the moment. General-purpose means that it does not have any of the geoscripting tools installed out of the box. We have prepared an [install script](https://github.com/GeoScripting-WUR/InstallLinuxScript) that installs all the missing tools, and have created a VirtualBox image with all the tools preinstalled for you. Using VirtualBox with the image we provide is the best way of running all the needed software, and it is also the environment in which we will test all the submissions, including the exam.
 
 If you are taking the course externally and want to follow just one or two lessons, you can often successfully install the needed software also on Windows and macOS. However, it is more difficult to set it up and thus we do not provide support for such installations: you are on your own for that. The VirtualBox images are public and anyone can use it, whether following the course or not!
 
@@ -56,12 +56,12 @@ Note that for this option, you need to have at least 50 GiB (ideally 200-500 GiB
 The first step is to [download and install VirtualBox on your computer](https://www.virtualbox.org/).
 Note that you need to [make sure that your computer has virtualisation technology (VT-d and VT-x) support enabled in its firmware](https://helpdeskgeek.com/how-to/how-to-enable-virtualization-in-bios-for-intel-and-amd/).
 Unfortunately, the instructions for doing do depend on the model of your laptop, so you need to find out how to do that on your own.
-If you don't manage, you can go to the [Servicepoint IT](https://www.wur.nl/en/article/laptop-software-service.htm) (see under the heading "Who can help me if I have issues with my laptop?") and ask the staff there to help you set up VirtualBox on your computer.
+If you don't manage, you can go to the [Servicepoint IT](https://wur.service-now.com/esc/en/laptop-software-service/laptop-software-service-for-students?id=kb_article&sysparm_article=KB0017150) (see under the heading "Who can help me if I have issues with my laptop?") and ask the staff there to help you set up VirtualBox on your computer.
 
 ![](figs/virtualbox-import.png)
 
 Once you have VirtualBox installed and virtualisation enabled, you can import the image that we have prepared for you.
-First, [download the Geoscripting OVA image by following this link](https://wageningenur4-my.sharepoint.com/:u:/g/personal/dainius_masiliunas_wur_nl/EUk9OnWEtiJGuUIShYY6VvgBgVlKpInzibv_DxxBnnIRbQ?e=dYihYs).
+First, [download the Geoscripting OVA image by following this link](https://wageningenur4-my.sharepoint.com/:u:/g/personal/dainius_masiliunas_wur_nl/IQBk2nnF36u4QLX7avq9_4lbAVJz2MKT8AN0ThqgfIBB6I0?e=Ounwcl).
 Next, click *File → Import Appliance...*, and select the file you just downloaded.
 Click *Next* and in *Machine Base Folder* field, select the directory in which you want the image to be placed (**this should be on a drive that has at least 50 GiB space**).
 Next, click *Finish* and wait for the import to finish.
@@ -74,6 +74,7 @@ Once it is finished, you will see a new virtual machine called Geoscripting in t
 Click *Machine → Settings...* and make sure there are no errors or warnings that are pointed out at the bottom of the window.
 Next, go to the *System* tab and set the number of cores and the amount of memory you want to give to the virtual machine.
 The number of cores should stay low, one or two is enough for getting started.
+Too many cores increases the chances of lock-ups.
 The memory should be as much as possible, while leaving enough for your host OS to run.
 The green line is a good indicator, you can set the slider to the maximum that is still within the green line.
 Do the same in the *Display* tab for the video memory.
@@ -83,13 +84,14 @@ In the *Shared Folders* tab, you can add a folder on your computer that will bec
 
 Lastly, click *OK* to dismiss the configuration window, and click the big green *Start* arrow.
 If all went well, after some time you will see a login screen.
-The password is the same as the displayed username, that is, `osboxes.org`.
-This is also the administrator password. (Note: the actual username is just `osboxes`, as usernames in Linux cannot contain special characters.)
+The username to use is `osboxes` and the password is `osboxes.org`.
+This is also the administrator password.
+You can change it in the settings if you wish.
 
 If you got this far, good job, you are now running Linux!
-We will use this environment throughout the course, so explore it and get familiar with it. You can press the Ubuntu logo (circle with three dots) at the bottom left to see all the software isntalled on the image.
+We will use this environment throughout the course, so explore it and get familiar with it. You can press the Ubuntu logo (circle with three dots) at the bottom left to see all the software installed on the image.
 
-When it comes time to shut down your environment, click the power button at top right, then again click the power button, and click *power off*, don't use the *X* button.
+When it comes time to shut down your environment, click the power button at top right, then again click the power button, and click *power off*. **Don't use the *X* button of the VirtualBox window in your host OS, unless it is frozen.**
 
 
 ![](figs/virtualbox-poweroff.PNG)
@@ -110,49 +112,39 @@ Most of the times the setup will not be successful because of the old version of
 sudo apt remove --purge virtualbox-guest-utils virtualbox-guest-x11
 ```
 
-It will ask for your user's password, which is `osboxes.org`. You will not see the password when you type it (it's a security feature, but it remembers what you typed). After that, type `Y` to confirm removal of the old Guest Additions. Now that it's finished, you can go back to the CD image directory and again click on "Run Software". This time, it should install successfully. After that, restart the Virtual Machine, and your screen should resize successfully!
+It will ask for your user's password, which is `osboxes.org`. After that, type `Y` to confirm removal of the old Guest Additions. Now that it's finished, you can go back to the CD image directory and again click on "Run Software". This time, it should install successfully. After that, restart the Virtual Machine, and your screen should resize successfully!
 
 You can now go back to the tutorial you were reading, you are finished with your system setup. Below are some suggestions in case you can't run VirtualBox successfully or if you are an advanced (power) user.
 
 # Alternative options
 
-If you couldn't get a VirtualBox image running due to hardware limitations, below are several alternative methods of getting Ubuntu with Geoscripting software working. In all cases, please see the last section on how to install the needed software.
+If you couldn't get a VirtualBox image running due to hardware limitations, below are several alternative methods of getting Ubuntu with Geoscripting software working. In all cases, **please also see the last section on how to install the needed software.**
 <!-- Note that you can also request a fallback virtual machine on the cloud (SURF Research Cloud); consult the staff for guidance on what is the best option in your case. -->
 
 ## For non-Intel macOS and other ARM users
 
-The VirtualBox OVA image above is made for Intel architectures. Other architectures, like ARM that is used on some newer macOS devices, are not supported.
+The VirtualBox OVA image above is made for Intel/amd64 architectures. Other architectures, like ARM that is used on some newer macOS devices, are not supported.
 Please purchase a device that can run Intel architecture software, as you will continue to run into these issues in future courses as well.
 
 If you have no other choice (e.g. you don't have enough time to buy a new laptop), a workaround for this course only is to install an ARM version of VirtualBox and install the ARM version of Ubuntu into it.
-Unfortunately there is no desktop version of Ubuntu 24.04 for ARM, but there is a server version, which will also work.
-Download the [Ubuntu 24.04 ARM ISO from here](https://ubuntu.com/download/server/arm).
+Download the [Ubuntu 26.04 ARM ISO from here](https://ubuntu.com/download/desktop).
 <!--In VirtualBox, you can try to automatically set it up by pressing *New*, giving it a name, putting the ISO image you just downloaded into the *ISO Image* box, selecting the 24.04 version in the "Version" box, and filling in the information in the "Unattended Install" section.
 This will install everything on first launch.
 If that doesn't work, try to add it again, -->
-Press *New*, give it a name, put the ISO image you just downloaded into the *ISO Image* box, select the 24.04 version in the "Version" box, and check the box "skip unattended install".
+Press *New*, give it a name, put the ISO image you just downloaded into the *ISO Image* box, select the 26.04 version in the "Version" box, and uncheck the box "Proceed with Unattended Installation".
 In the *Hard Disk* tab, **make sure to give your virtual machine at least 50 GB space**, ideally set it to 200-500 GB.
 This is the maximum the disk space can grow to, but it will not take as much space, at least initially.
 Start the virtual machine, go through the installation wizard.
-You navigate with arrow keys, Tab and Enter.
-You can accept all defaults, except that you should **disable LVM** when prompted, as that would only let you use half of your allocated disk space.
+You can accept all defaults.
 When the installation is finished, press *Reboot Now*.
 When prompted to remove the installation medium, press Enter.
 
-After it reboots, press Enter, log in and install the package `ubuntu-desktop` by entering the following code:
-
-```{bash, eval=FALSE}
-sudo apt update
-sudo apt install ubuntu-desktop
-sudo systemctl disable systemd-networkd-wait-online
-```
-
-Finally, reboot using the command `systemctl reboot` and continue with installing the Geoscripting software by following the [last section of this page](#installing-necessary-software).
+Finally, continue with installing the Geoscripting software by following the [last section of this page](#installing-necessary-software).
 Ignore any errors that appear (some packages are not available on ARM, but they are not critical).
 
 ## Linux on a USB drive
 
-Download the ISO image of [Ubuntu 24.04](http://releases.ubuntu.com/24.04/), and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. [Rufus](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows) on Windows.
+Download the ISO image of [Ubuntu 26.04](http://releases.ubuntu.com/26.04/), and write it onto a USB stick. There are several programs to do so depending on your operating system, e.g. [Rufus](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-windows) on Windows.
 
 This will create a *non-persistent* Live USB. That means that any changes you do will be lost on reboot. If you want to keep your changes, you have two options: 1) Write a persistent Live USB *from within Linux*, or 2) *install* Linux on external/internal hard drive.
 
@@ -203,8 +195,8 @@ sudo apt update
 sudo apt install git
 git clone https://github.com/GeoScripting-WUR/InstallLinuxScript.git
 cd InstallLinuxScript
-cd noble # For Ubuntu 24.04
-bash install.sh
+cd resolute # For Ubuntu 26.04
+bash install-virtualbox.sh
 ```
 
-This is not needed if you use the VirtualBox image above, as this step has already been done for you.
+This is not required if you use the pre-made VirtualBox image above, but is required in all other cases.
